@@ -28,10 +28,52 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`mvtem dependencies`](#mvtem-dependencies)
+* [`mvtem extensions FROM TO`](#mvtem-extensions-from-to)
 * [`mvtem form FROM TO NAME`](#mvtem-form-from-to-name)
 * [`mvtem help [COMMAND]`](#mvtem-help-command)
 * [`mvtem module FROM TO NAME`](#mvtem-module-from-to-name)
-* [`mvtem modules`](#mvtem-modules)
+* [`mvtem modules FROM TO`](#mvtem-modules-from-to)
+
+## `mvtem dependencies`
+
+Describe the command here
+
+```
+USAGE
+  $ mvtem dependencies
+
+OPTIONS
+  -n, --name=name  name to print
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/dependencies.js](https://github.com/RGkevin/mvtem/blob/v0.0.5/src/commands/dependencies.js)_
+
+## `mvtem extensions FROM TO`
+
+Describe the command here
+
+```
+USAGE
+  $ mvtem extensions FROM TO
+
+ARGUMENTS
+  FROM  Base project path
+  TO    Destination project path
+
+OPTIONS
+  -p, --epath=epath  [default: mvcextensions] MVC Extensions relative path
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/extensions.js](https://github.com/RGkevin/mvtem/blob/v0.0.5/src/commands/extensions.js)_
 
 ## `mvtem form FROM TO NAME`
 
@@ -105,16 +147,20 @@ DESCRIPTION
 
 _See code: [src/commands/module.js](https://github.com/RGkevin/mvtem/blob/v0.0.5/src/commands/module.js)_
 
-## `mvtem modules`
+## `mvtem modules FROM TO`
 
 Describe the command here
 
 ```
 USAGE
-  $ mvtem modules
+  $ mvtem modules FROM TO
+
+ARGUMENTS
+  FROM  Base project path
+  TO    Destination project path
 
 OPTIONS
-  -n, --name=name  name to print
+  -p, --mpath=mpath  [default: modules] Modules relative path
 
 DESCRIPTION
   ...
