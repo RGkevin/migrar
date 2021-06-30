@@ -20,7 +20,6 @@ class FormPathsUtil {
       mname,
       channel,
       ctrl,
-      actions,
       format,
       mconfig,
       mpath,
@@ -28,12 +27,13 @@ class FormPathsUtil {
       cpath,
       epath,
       opath,
+      suffix,
     } = this.flags
     // parse paths
     return {
       oldFormPath: path.join(opath, fpath, channel, name + format),
       oldCtrlPath: path.join(opath, cpath, channel, name + ctrl),
-
+      oldCtrlFilePath: path.join(opath, cpath, channel, name + ctrl, name + ctrl + '.js'),
       fromFormPath: path.join(from, fpath, channel, mname, name + format),
       fromCtrlPath: path.join(from, cpath, channel, mname, name + ctrl),
       toMConfigPath: path.join(to, mpath, mname, mconfig),
@@ -43,6 +43,7 @@ class FormPathsUtil {
       toModuleCtrlPath: path.join(to, cpath, channel, mname),
       toExtensionCtrlPath: path.join(to, epath),
       toExtCtrlMPath: path.join(to, epath, mname),
+      toExtCtrlFilePath: path.join(to, epath, name + suffix + ctrl + '.js'),
     }
   }
 }

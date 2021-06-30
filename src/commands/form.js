@@ -11,9 +11,6 @@ class FormCommand extends Command {
     this.pathsUtil = new FormPathsUtil({flags, args})
     // get flags and args
     const {
-      flags: {
-        mname,
-      },
       args: {from},
     } = this.parse(FormCommand)
     const {
@@ -25,7 +22,8 @@ class FormCommand extends Command {
       toExtensionCtrlPath,
       oldFormPath,
       oldCtrlPath,
-      toExtCtrlMPath,
+      oldCtrlFilePath,
+      toExtCtrlFilePath,
     } = this.pathsUtil.paths
 
     // check if old paths exists
@@ -46,19 +44,13 @@ class FormCommand extends Command {
       // move files and then replace with the old one
       if (!fs.existsSync(toModuleFormPath)) throw new Error(`Invalid toModuleFormPath ${toModuleFormPath}`)
       if (!fs.existsSync(toModuleCtrlPath)) throw new Error(`Invalid toModuleCtrlPath ${toModuleCtrlPath}`)
-      await filesUtil.moveFiles(fromFormPath, toModuleFormPath)
+      // move old json files
+      await filesUtil.moveFiles(oldFormPath, toModuleFormPath)
+      // move base controller files
       await filesUtil.moveFiles(fromCtrlPath, toModuleCtrlPath)
 
-      // create module folder if not exists
-      this.log(`check if toExtCtrlMPath exist. \n    ${toExtCtrlMPath}`)
-      if (!fs.existsSync(toExtCtrlMPath)) {
-        this.log('extension form module folder does not exists. Will create a new folder')
-        await filesUtil.makeDir(toExtensionCtrlPath, mname)
-      }
-
-      // move old controllers to new path
-      await filesUtil.moveFiles(oldFormPath, toModuleFormPath)
-      await filesUtil.moveFiles(oldCtrlPath, toExtCtrlMPath)
+      // move old controller to extension path
+      await filesUtil.moveFiles(oldCtrlFilePath, toExtCtrlFilePath)
       // rename files
       // rewrite module config as ext
       moduleConfig = this.getMConfigAsExtensionForm(moduleConfig)
@@ -105,20 +97,18 @@ class FormCommand extends Command {
     this.log('getMConfigAsExtensionForm:: ')
     const formKey = 'Forms'
     const extKey = 'ControllerExtensions'
-    // const {
-    // } = this.pathsUtil.paths
     const {
       flags: {
-        mname,
         channel,
         ctrl,
+        suffix,
       },
       args: {name},
     } = this.parse(FormCommand)
 
     let baseConfig = moduleConfig[formKey][channel][name]
 
-    baseConfig[extKey].push(`${mname}/${name}${ctrl}/${name}${ctrl}`)
+    baseConfig[extKey].push(`${name}${suffix}${ctrl}`)
 
     return moduleConfig
   }
@@ -132,7 +122,7 @@ Please make sure the destination workspace is in a clean git state
 FormCommand.flags = {
   mname: flags.string({char: 'm', description: 'Module name', required: true}),
   channel: flags.string({char: 'h', description: 'Platform channel', default: 'mobile'}),
-  ctrl: flags.string({char: 's', description: 'Controllers suffix', default: 'Controller'}),
+  ctrl: flags.string({char: 'l', description: 'Controllers suffix', default: 'Controller'}),
   actions: flags.string({char: 'a', description: 'Actions suffix', default: 'Actions'}),
   format: flags.string({char: 'r', description: 'Folder format suffix', default: '.sm'}),
   mconfig: flags.string({char: 'g', description: 'Module config relative path', default: 'Config/ModuleConfig.json'}),
@@ -141,6 +131,7 @@ FormCommand.flags = {
   cpath: flags.string({char: 'c', description: 'Forms library path', default: 'controllers'}),
   epath: flags.string({char: 'e', description: 'Controllers extension path', default: 'modules/require'}),
   opath: flags.string({char: 'o', description: 'Old project workspace path', default: '~/Visualizer/', required: true}),
+  suffix: flags.string({char: 's', description: 'Project suffix identifier', default: 'BB'}),
 }
 
 FormCommand.args = [
