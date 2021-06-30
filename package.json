@@ -1,7 +1,7 @@
 {
   "name": "migrar",
   "description": "Migration tool for temenos visualizer projects",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "author": "Kevin Lopez @RGkevin",
   "bin": {
     "mvtem": "./bin/run"

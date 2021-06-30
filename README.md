@@ -15,36 +15,36 @@ Move temenos apps contents to another temenos app workspace
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g mvtem
-$ mvtem COMMAND
+$ npm install -g migrar
+$ migrar COMMAND
 running command...
-$ mvtem (-v|--version|version)
-mvtem/0.0.5 darwin-x64 node-v14.17.0
-$ mvtem --help [COMMAND]
+$ migrar (-v|--version|version)
+migrar/1.0.0 darwin-x64 node-v14.17.0
+$ migrar --help [COMMAND]
 USAGE
-  $ mvtem COMMAND
+  $ migrar COMMAND
 ...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`mvtem components`](#mvtem-components)
-* [`mvtem dependencies FROM TO`](#mvtem-dependencies-from-to)
-* [`mvtem extensions FROM TO`](#mvtem-extensions-from-to)
-* [`mvtem form FROM TO NAME`](#mvtem-form-from-to-name)
-* [`mvtem help [COMMAND]`](#mvtem-help-command)
-* [`mvtem module FROM TO NAME`](#mvtem-module-from-to-name)
-* [`mvtem modules FROM TO`](#mvtem-modules-from-to)
-* [`mvtem property FROM TO`](#mvtem-property-from-to)
-* [`mvtem templates`](#mvtem-templates)
+* [`migrar components`](#migrar-components)
+* [`migrar dependencies FROM TO`](#migrar-dependencies-from-to)
+* [`migrar extensions FROM TO`](#migrar-extensions-from-to)
+* [`migrar form FROM TO NAME`](#migrar-form-from-to-name)
+* [`migrar help [COMMAND]`](#migrar-help-command)
+* [`migrar module FROM TO NAME`](#migrar-module-from-to-name)
+* [`migrar modules FROM TO`](#migrar-modules-from-to)
+* [`migrar property FROM TO`](#migrar-property-from-to)
+* [`migrar templates`](#migrar-templates)
 
-## `mvtem components`
+## `migrar components`
 
 Describe the command here
 
 ```
 USAGE
-  $ mvtem components
+  $ migrar components
 
 OPTIONS
   -n, --name=name  name to print
@@ -54,15 +54,15 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/components.js](https://github.com/RGkevin/mvtem/blob/v0.0.5/src/commands/components.js)_
+_See code: [src/commands/components.js](https://github.com/RGkevin/migrar/blob/v1.0.0/src/commands/components.js)_
 
-## `mvtem dependencies FROM TO`
+## `migrar dependencies FROM TO`
 
 Describe the command here
 
 ```
 USAGE
-  $ mvtem dependencies FROM TO
+  $ migrar dependencies FROM TO
 
 ARGUMENTS
   FROM  Old project workspace path
@@ -73,15 +73,15 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/dependencies.js](https://github.com/RGkevin/mvtem/blob/v0.0.5/src/commands/dependencies.js)_
+_See code: [src/commands/dependencies.js](https://github.com/RGkevin/migrar/blob/v1.0.0/src/commands/dependencies.js)_
 
-## `mvtem extensions FROM TO`
+## `migrar extensions FROM TO`
 
 Describe the command here
 
 ```
 USAGE
-  $ mvtem extensions FROM TO
+  $ migrar extensions FROM TO
 
 ARGUMENTS
   FROM  Base project path
@@ -95,18 +95,18 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/extensions.js](https://github.com/RGkevin/mvtem/blob/v0.0.5/src/commands/extensions.js)_
+_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v1.0.0/src/commands/extensions.js)_
 
-## `mvtem form FROM TO NAME`
+## `migrar form FROM TO NAME`
 
 Move a form from old source and paste it in the new workspace as extension
 
 ```
 USAGE
-  $ mvtem form FROM TO NAME
+  $ migrar form FROM TO NAME
 
 ARGUMENTS
-  FROM  Old project workspace path
+  FROM  Base project workspace path
   TO    Destination project workspace path
   NAME  Form Name
 
@@ -118,6 +118,7 @@ OPTIONS
   -g, --mconfig=mconfig  [default: Config/ModuleConfig.json] Module config relative path
   -h, --channel=channel  [default: mobile] Platform channel
   -m, --mname=mname      (required) Module name
+  -o, --opath=opath      (required) [default: ~/Visualizer/] Old project workspace path
   -p, --mpath=mpath      [default: mvcextensions] MVC Extensions path
   -r, --format=format    [default: .sm] Folder format suffix
   -s, --ctrl=ctrl        [default: Controller] Controllers suffix
@@ -127,15 +128,15 @@ DESCRIPTION
   Please make sure the destination workspace is in a clean git state
 ```
 
-_See code: [src/commands/form.js](https://github.com/RGkevin/mvtem/blob/v0.0.5/src/commands/form.js)_
+_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v1.0.0/src/commands/form.js)_
 
-## `mvtem help [COMMAND]`
+## `migrar help [COMMAND]`
 
-display help for mvtem
+display help for migrar
 
 ```
 USAGE
-  $ mvtem help [COMMAND]
+  $ migrar help [COMMAND]
 
 ARGUMENTS
   COMMAND  command to show help for
@@ -146,13 +147,13 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
 
-## `mvtem module FROM TO NAME`
+## `migrar module FROM TO NAME`
 
 Describe the command here
 
 ```
 USAGE
-  $ mvtem module FROM TO NAME
+  $ migrar module FROM TO NAME
 
 ARGUMENTS
   FROM  Old project workspace path
@@ -167,15 +168,15 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/module.js](https://github.com/RGkevin/mvtem/blob/v0.0.5/src/commands/module.js)_
+_See code: [src/commands/module.js](https://github.com/RGkevin/migrar/blob/v1.0.0/src/commands/module.js)_
 
-## `mvtem modules FROM TO`
+## `migrar modules FROM TO`
 
 Describe the command here
 
 ```
 USAGE
-  $ mvtem modules FROM TO
+  $ migrar modules FROM TO
 
 ARGUMENTS
   FROM  Base project path
@@ -189,15 +190,15 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/modules.js](https://github.com/RGkevin/mvtem/blob/v0.0.5/src/commands/modules.js)_
+_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v1.0.0/src/commands/modules.js)_
 
-## `mvtem property FROM TO`
+## `migrar property FROM TO`
 
 Describe the command here
 
 ```
 USAGE
-  $ mvtem property FROM TO
+  $ migrar property FROM TO
 
 ARGUMENTS
   FROM  Old project workspace path
@@ -215,15 +216,15 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/property.js](https://github.com/RGkevin/mvtem/blob/v0.0.5/src/commands/property.js)_
+_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v1.0.0/src/commands/property.js)_
 
-## `mvtem templates`
+## `migrar templates`
 
 Describe the command here
 
 ```
 USAGE
-  $ mvtem templates
+  $ migrar templates
 
 OPTIONS
   -n, --name=name  name to print
@@ -233,5 +234,5 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/templates.js](https://github.com/RGkevin/mvtem/blob/v0.0.5/src/commands/templates.js)_
+_See code: [src/commands/templates.js](https://github.com/RGkevin/migrar/blob/v1.0.0/src/commands/templates.js)_
 <!-- commandsstop -->
