@@ -19,7 +19,7 @@ $ npm install -g migrar
 $ migrar COMMAND
 running command...
 $ migrar (-v|--version|version)
-migrar/1.0.0 darwin-x64 node-v14.17.0
+migrar/2.0.0 darwin-x64 node-v14.17.0
 $ migrar --help [COMMAND]
 USAGE
   $ migrar COMMAND
@@ -54,7 +54,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/components.js](https://github.com/RGkevin/migrar/blob/v1.0.0/src/commands/components.js)_
+_See code: [src/commands/components.js](https://github.com/RGkevin/migrar/blob/v2.0.0/src/commands/components.js)_
 
 ## `migrar dependencies FROM TO`
 
@@ -73,7 +73,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/dependencies.js](https://github.com/RGkevin/migrar/blob/v1.0.0/src/commands/dependencies.js)_
+_See code: [src/commands/dependencies.js](https://github.com/RGkevin/migrar/blob/v2.0.0/src/commands/dependencies.js)_
 
 ## `migrar extensions FROM TO`
 
@@ -95,7 +95,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v1.0.0/src/commands/extensions.js)_
+_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v2.0.0/src/commands/extensions.js)_
 
 ## `migrar form FROM TO NAME`
 
@@ -128,7 +128,7 @@ DESCRIPTION
   Please make sure the destination workspace is in a clean git state
 ```
 
-_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v1.0.0/src/commands/form.js)_
+_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v2.0.0/src/commands/form.js)_
 
 ## `migrar help [COMMAND]`
 
@@ -168,7 +168,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/module.js](https://github.com/RGkevin/migrar/blob/v1.0.0/src/commands/module.js)_
+_See code: [src/commands/module.js](https://github.com/RGkevin/migrar/blob/v2.0.0/src/commands/module.js)_
 
 ## `migrar modules FROM TO`
 
@@ -190,7 +190,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v1.0.0/src/commands/modules.js)_
+_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v2.0.0/src/commands/modules.js)_
 
 ## `migrar property FROM TO`
 
@@ -216,7 +216,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v1.0.0/src/commands/property.js)_
+_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v2.0.0/src/commands/property.js)_
 
 ## `migrar templates`
 
@@ -234,5 +234,5 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/templates.js](https://github.com/RGkevin/migrar/blob/v1.0.0/src/commands/templates.js)_
+_See code: [src/commands/templates.js](https://github.com/RGkevin/migrar/blob/v2.0.0/src/commands/templates.js)_
 <!-- commandsstop -->
