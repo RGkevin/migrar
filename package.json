@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "author": "Kevin Lopez @RGkevin",
   "bin": {
-    "mvtem": "./bin/run"
+    "migrar": "./bin/run"
   },
   "bugs": "https://github.com/RGkevin/migrar/issues",
   "dependencies": {
