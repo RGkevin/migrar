@@ -1,7 +1,7 @@
 {
   "name": "mvtem",
   "description": "Move temenos apps contents to another temenos app workspace",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Kevin Lopez @RGkevin",
   "bin": {
     "mvtem": "./bin/run"
