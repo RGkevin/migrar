@@ -19,7 +19,7 @@ $ npm install -g mvtem
 $ mvtem COMMAND
 running command...
 $ mvtem (-v|--version|version)
-mvtem/0.0.5 darwin-x64 node-v15.4.0
+mvtem/0.0.5 darwin-x64 node-v14.17.0
 $ mvtem --help [COMMAND]
 USAGE
   $ mvtem COMMAND
@@ -28,23 +28,45 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`mvtem dependencies`](#mvtem-dependencies)
+* [`mvtem components`](#mvtem-components)
+* [`mvtem dependencies FROM TO`](#mvtem-dependencies-from-to)
 * [`mvtem extensions FROM TO`](#mvtem-extensions-from-to)
 * [`mvtem form FROM TO NAME`](#mvtem-form-from-to-name)
 * [`mvtem help [COMMAND]`](#mvtem-help-command)
 * [`mvtem module FROM TO NAME`](#mvtem-module-from-to-name)
 * [`mvtem modules FROM TO`](#mvtem-modules-from-to)
+* [`mvtem property FROM TO`](#mvtem-property-from-to)
+* [`mvtem templates`](#mvtem-templates)
 
-## `mvtem dependencies`
+## `mvtem components`
 
 Describe the command here
 
 ```
 USAGE
-  $ mvtem dependencies
+  $ mvtem components
 
 OPTIONS
   -n, --name=name  name to print
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/components.js](https://github.com/RGkevin/mvtem/blob/v0.0.5/src/commands/components.js)_
+
+## `mvtem dependencies FROM TO`
+
+Describe the command here
+
+```
+USAGE
+  $ mvtem dependencies FROM TO
+
+ARGUMENTS
+  FROM  Old project workspace path
+  TO    Destination project workspace path
 
 DESCRIPTION
   ...
@@ -168,4 +190,48 @@ DESCRIPTION
 ```
 
 _See code: [src/commands/modules.js](https://github.com/RGkevin/mvtem/blob/v0.0.5/src/commands/modules.js)_
+
+## `mvtem property FROM TO`
+
+Describe the command here
+
+```
+USAGE
+  $ mvtem property FROM TO
+
+ARGUMENTS
+  FROM  Old project workspace path
+  TO    Destination project workspace path
+
+OPTIONS
+  -f, --fileName=fileName  [default: projectProperties.json] Application Property file name
+  -h, --channel=channel    [default: mobile] Platform channel
+  -n, --property=property  [default: ide_appEvents] Application Property name to migrate
+  -p, --apath=apath        [default: studioactions] Studio Actions path
+  -r, --format=format      [default: .json] Files format suffix
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/property.js](https://github.com/RGkevin/mvtem/blob/v0.0.5/src/commands/property.js)_
+
+## `mvtem templates`
+
+Describe the command here
+
+```
+USAGE
+  $ mvtem templates
+
+OPTIONS
+  -n, --name=name  name to print
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/templates.js](https://github.com/RGkevin/mvtem/blob/v0.0.5/src/commands/templates.js)_
 <!-- commandsstop -->
