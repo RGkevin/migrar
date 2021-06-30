@@ -35,7 +35,7 @@ class FormPathsUtil {
       oldCtrlPath: path.join(opath, cpath, channel, name + ctrl),
 
       fromFormPath: path.join(from, fpath, channel, mname, name + format),
-      fromCtrlPath: path.join(from, cpath, channel, name + ctrl),
+      fromCtrlPath: path.join(from, cpath, channel, mname, name + ctrl),
       toMConfigPath: path.join(to, mpath, mname, mconfig),
       toModuleFormPath: path.join(to, fpath, channel, mname),
       toFormPath: path.join(to, fpath, channel, mname, name + format),

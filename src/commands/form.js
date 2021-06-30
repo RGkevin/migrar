@@ -52,111 +52,71 @@ class FormCommand extends Command {
     // get module config json as object
     let moduleConfig = filesUtil.getJsonFromFile(toMConfigPath)
 
+    // controller to refactor
+    let ctrlFileToRefactor = ''
+
     // check if will replace form
     const willReplaceForm = fs.existsSync(fromFormPath)
     if (willReplaceForm) {
       // copy and replace .json files
       this.log(`- Will move BASE files from \n    ${fromFormPath} \n    and then move OLD form as EXTENSION`)
       // move files and then replace with the old one
+      if (!fs.existsSync(toModuleFormPath)) throw new Error(`Invalid toModuleFormPath ${toModuleFormPath}`)
+      if (!fs.existsSync(toModuleCtrlPath)) throw new Error(`Invalid toModuleCtrlPath ${toModuleCtrlPath}`)
       await filesUtil.moveFiles(fromFormPath, toModuleFormPath)
       await filesUtil.moveFiles(fromCtrlPath, toModuleCtrlPath)
+
+      // create module folder if not exists
+      this.log(`check if toExtCtrlMPath exist. \n    ${toExtCtrlMPath}`)
+      if (!fs.existsSync(toExtCtrlMPath)) {
+        this.log('extension form module folder does not exists. Will create a new folder')
+        await filesUtil.makeDir(toExtensionCtrlPath, mname)
+      }
+
       // move old controllers to new path
       await filesUtil.moveFiles(oldFormPath, toModuleFormPath)
-      await filesUtil.moveFiles(oldCtrlPath, toModuleCtrlPath)
+      await filesUtil.moveFiles(oldCtrlPath, toExtCtrlMPath)
+      // rename files
       // rewrite module config as ext
       moduleConfig = this.getMConfigAsExtensionForm(moduleConfig)
       filesUtil.rewriteFile(toMConfigPath, moduleConfig)
+
+      // define controller to refactor
+      //   `${mname}/${name}${ctrl}/${name}${ctrl}`
+      ctrlFileToRefactor = path.join(toExtCtrlMPath, name + ctrl, name + ctrl + '.js')
     } else {
       // only move old form as brand new form
       // copy and replace .json files
-      this.log(`- Will move OLD files as BRAND NEW \n  from: ${oldFormPath} \n     and: ${oldCtrlPath}`)
+      this.log(`- Will move OLD files as BRAND NEW \n  from: ${oldFormPath} \n     and: ${oldCtrlPath} \n to: ${toExtensionCtrlPath}`)
       await filesUtil.moveFiles(oldFormPath, toModuleFormPath)
-      await filesUtil.moveFiles(oldCtrlPath, toExtensionCtrlPath)
+      await filesUtil.moveFiles(oldCtrlPath, toModuleCtrlPath)
 
       // rewrite module config
       moduleConfig = this.getMConfigAsNewForm(moduleConfig)
       filesUtil.rewriteFile(toMConfigPath, moduleConfig)
+
+      // define controller to refactor
+      ctrlFileToRefactor = ``
     }
 
-    // create and get new path
-    // await filesUtil.moveFiles(oldCtr)
-    // define local flags
-    // const formsLibPath = 'forms'
-    // const ctrlLibPath = 'controllers'
-
-    // define absolute paths FROM
-    // const fromFormPath = path.join(from, fpath, channel, name + format)
-    // const fromCtrlPath = path.join(from, cpath, channel, name + ctrl)
-
-    // if (!fs.existsSync(fromFormPath)) throw new Error(`Invalid BASE project workspace path \n ${fromFormPath}`)
-
-    // define absolute paths TO
-    // const toMConfigPath = path.join(to, mpath, mname, mconfig)
-    // const toModuleFormPath = path.join(to, fpath, channel, mname)
-    // const toFormPath = path.join(to, fpath, channel, mname, name + format)
-    // const toCtrlPath = path.join(to, cpath, channel, mname, name + ctrl)
-    // const toModuleCtrlPath = path.join(to, cpath, channel, mname)
-    // const toExtensionCtrlPath = path.join(to, epath)
-
-    // await filesUtil.moveFiles(fromFormPath, toModuleFormPath)
-    //
-    // // copy controllers and actions
-    // this.log('\n\n- Will move Controllers files')
-    // let _toCtrlPath = toModuleCtrlPath
-    // if (willReplaceForm) {
-    //   // move to UI controllers extension path
-    //   this.log('- controllers already exists. Moving and adding extension')
-    //   // create and get new path
-    //   _toCtrlPath = await filesUtil.getPath(toExtensionCtrlPath, mname)
-    //
-    //   this.log(toCtrlPath)
-    // }
-    // await filesUtil.moveFiles(fromCtrlPath, _toCtrlPath)
-    //
-    // // rewrite module config
-    // // so it can recognize the new form and controllers
-    // this.log('\n\n- Will rewrite module config file')
-    // let moduleConfigObj = filesUtil.getJsonFromFile(toMConfigPath)
-    // moduleConfigObj = this.setNewModuleConfig(moduleConfigObj)
-    // filesUtil.rewriteFile(toMConfigPath, moduleConfigObj)
-    // this.log(toMConfigPath)
-    // if (willReplaceForm) {
-    //   // add config as a brand new form
-    // } else {
-    //   // add form controller extension
-    // }
+    // refactor controller file
+    // this.log(` will refactorOldController: \n to: ${ctrlFileToRefactor}`)
+    // if (!fs.existsSync(ctrlFileToRefactor)) throw new Error(`Error refactoring controller. ${ctrlFileToRefactor}`)
+    // filesUtil.renameFile(path.join(ctrlFileToRefactor, '../'), name + ctrl + '.js', name + ctrl + '.js')
   }
 
   getMConfigAsNewForm(moduleConfig) {
     this.log('getMConfigAsNewForm:: ')
     const formKey = 'Forms'
-    const {
-      fromFormPath,
-      fromCtrlPath,
-      toMConfigPath,
-      toModuleFormPath,
-      toFormPath,
-      toCtrlPath,
-      toModuleCtrlPath,
-      toExtensionCtrlPath,
-      oldFormPath,
-      oldCtrlPath,
-    } = this.pathsUtil.paths
+    // const {
+    // } = this.pathsUtil.paths
     const {
       flags: {
         mname,
         channel,
         ctrl,
-        actions,
-        format,
-        mconfig,
-        mpath,
-        fpath,
-        cpath,
-        epath,
-        opath,
       },
-      args: {from, to, name},
+      args: {name},
     } = this.parse(FormCommand)
 
     moduleConfig[formKey][channel][name] = {
@@ -167,7 +127,6 @@ class FormCommand extends Command {
       friendlyName: name,
     }
 
-    this.log(moduleConfig[formKey][channel][name])
     return moduleConfig
   }
 
@@ -175,18 +134,8 @@ class FormCommand extends Command {
     this.log('getMConfigAsExtensionForm:: ')
     const formKey = 'Forms'
     const extKey = 'ControllerExtensions'
-    const {
-      fromFormPath,
-      fromCtrlPath,
-      toMConfigPath,
-      toModuleFormPath,
-      toFormPath,
-      toCtrlPath,
-      toModuleCtrlPath,
-      toExtensionCtrlPath,
-      oldFormPath,
-      oldCtrlPath,
-    } = this.pathsUtil.paths
+    // const {
+    // } = this.pathsUtil.paths
     const {
       flags: {
         mname,
@@ -206,34 +155,11 @@ class FormCommand extends Command {
 
     let baseConfig = moduleConfig[formKey][channel][name]
 
-    // moduleConfig[formKey][channel][name] = {
-    //   Controller: `${mname}/${name}${ctrl}`,
-    //   ControllerExtensions: [],
-    //   FormController: 'kony.mvc.MDAFormController',
-    //   FormName: name,
-    //   friendlyName: name,
-    // }
-    baseConfig[extKey].push(`${mname}/${name}_Extn`)
-
-    this.log(baseConfig)
+    baseConfig[extKey].push(`${mname}/${name}${ctrl}/${name}${ctrl}`)
 
     return moduleConfig
   }
 
-  setNewModuleConfig(currentConfig) {
-    this.log('\n\n- Will rewrite module config file')
-    // get flags and args
-    const {
-      flags: {
-        mname,
-        channel,
-        ctrl,
-      },
-      args: {name},
-    } = this.parse(FormCommand)
-    console.log(mname)
-    return currentConfig
-  }
 }
 
 FormCommand.description = `Move a form from old source and paste it in the new workspace as extension
