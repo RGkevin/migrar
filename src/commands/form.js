@@ -62,7 +62,7 @@ class FormCommand extends Command {
       // rename files
       // rewrite module config as ext
       moduleConfig = this.getMConfigAsExtensionForm(moduleConfig)
-      filesUtil.rewriteFile(toMConfigPath, moduleConfig)
+      // filesUtil.rewriteFile(toMConfigPath, moduleConfig)
     } else {
       // only move old form as brand new form
       // copy and replace .json files
@@ -72,8 +72,8 @@ class FormCommand extends Command {
 
       // rewrite module config
       moduleConfig = this.getMConfigAsNewForm(moduleConfig)
-      filesUtil.rewriteFile(toMConfigPath, moduleConfig)
     }
+    filesUtil.rewriteFile(toMConfigPath, moduleConfig)
   }
 
   getMConfigAsNewForm(moduleConfig) {
@@ -94,7 +94,7 @@ class FormCommand extends Command {
       Controller: `${mname}/${name}${ctrl}`,
       ControllerExtensions: [],
       FormController: 'kony.mvc.MDAFormController',
-      FormName: name,
+      FormName: `${mname}/${name}`,
       friendlyName: name,
     }
 
