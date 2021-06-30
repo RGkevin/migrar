@@ -1,6 +1,6 @@
 const fs = require('fs')
-const path = require('path')
-const {exec} = require('child_process')
+// const path = require('path')
+// const {exec} = require('child_process')
 const {Command, flags} = require('@oclif/command')
 const FilesUtil = require('../util/files')
 const FormPathsUtil = require('../util/form-paths')
@@ -15,26 +15,14 @@ class FormCommand extends Command {
     const {
       flags: {
         mname,
-        channel,
-        ctrl,
-        actions,
-        format,
-        mconfig,
-        mpath,
-        fpath,
-        cpath,
-        epath,
-        opath,
       },
-      args: {from, to, name},
+      args: {from},
     } = this.parse(FormCommand)
     const {
       fromFormPath,
       fromCtrlPath,
       toMConfigPath,
       toModuleFormPath,
-      toFormPath,
-      toCtrlPath,
       toModuleCtrlPath,
       toExtensionCtrlPath,
       oldFormPath,
@@ -51,9 +39,6 @@ class FormCommand extends Command {
 
     // get module config json as object
     let moduleConfig = filesUtil.getJsonFromFile(toMConfigPath)
-
-    // controller to refactor
-    let ctrlFileToRefactor = ''
 
     // check if will replace form
     const willReplaceForm = fs.existsSync(fromFormPath)
@@ -80,10 +65,6 @@ class FormCommand extends Command {
       // rewrite module config as ext
       moduleConfig = this.getMConfigAsExtensionForm(moduleConfig)
       filesUtil.rewriteFile(toMConfigPath, moduleConfig)
-
-      // define controller to refactor
-      //   `${mname}/${name}${ctrl}/${name}${ctrl}`
-      ctrlFileToRefactor = path.join(toExtCtrlMPath, name + ctrl, name + ctrl + '.js')
     } else {
       // only move old form as brand new form
       // copy and replace .json files
@@ -94,15 +75,7 @@ class FormCommand extends Command {
       // rewrite module config
       moduleConfig = this.getMConfigAsNewForm(moduleConfig)
       filesUtil.rewriteFile(toMConfigPath, moduleConfig)
-
-      // define controller to refactor
-      ctrlFileToRefactor = ``
     }
-
-    // refactor controller file
-    // this.log(` will refactorOldController: \n to: ${ctrlFileToRefactor}`)
-    // if (!fs.existsSync(ctrlFileToRefactor)) throw new Error(`Error refactoring controller. ${ctrlFileToRefactor}`)
-    // filesUtil.renameFile(path.join(ctrlFileToRefactor, '../'), name + ctrl + '.js', name + ctrl + '.js')
   }
 
   getMConfigAsNewForm(moduleConfig) {
@@ -141,16 +114,8 @@ class FormCommand extends Command {
         mname,
         channel,
         ctrl,
-        actions,
-        format,
-        mconfig,
-        mpath,
-        fpath,
-        cpath,
-        epath,
-        opath,
       },
-      args: {from, to, name},
+      args: {name},
     } = this.parse(FormCommand)
 
     let baseConfig = moduleConfig[formKey][channel][name]
@@ -159,7 +124,6 @@ class FormCommand extends Command {
 
     return moduleConfig
   }
-
 }
 
 FormCommand.description = `Move a form from old source and paste it in the new workspace as extension
