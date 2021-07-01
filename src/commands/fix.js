@@ -1,6 +1,6 @@
 const path = require('path')
 const fs = require('fs')
-const FilesUtil = require("../util/files");
+const FilesUtil = require('../util/files')
 const {Command, flags} = require('@oclif/command')
 
 class FixCommand extends Command {
@@ -18,14 +18,7 @@ class FixCommand extends Command {
     const actionsInFile = fileJsonObj[name] && fileJsonObj[name].actions ? fileJsonObj[name].actions : []
     // will try to fix actions
     this.log(`Will try to fix (${actionsInFile.length}) actions`)
-    const newActions = actionsInFile.map(a => this.canChangeInvokeToSnippet(a) ? this.changeInvokeToSnippet(a) : a)
-    this.log('old')
-    this.log(actionsInFile)
-    this.log('new')
-    this.log(newActions)
-    fileJsonObj[name].actions = newActions
-    this.log('new file config')
-    this.log(fileJsonObj)
+    fileJsonObj[name].actions = actionsInFile.map(a => this.canChangeInvokeToSnippet(a) ? this.changeInvokeToSnippet(a) : a)
 
     filesUtil.rewriteFile(fileToFixPath, fileJsonObj)
   }

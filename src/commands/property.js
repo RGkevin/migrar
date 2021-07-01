@@ -12,9 +12,7 @@ class PropertyCommand extends Command {
     // const {from, to} = args
     const {
       property,
-    //   fileName,
       channel,
-    //   apath,
       format,
     } = flags
     const {
