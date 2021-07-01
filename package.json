@@ -1,12 +1,12 @@
 {
-  "name": "mvtem",
-  "description": "Move temenos apps contents to another temenos app workspace",
-  "version": "0.0.5",
+  "name": "migrar",
+  "description": "Migration tool for temenos visualizer projects",
+  "version": "3.1.0",
   "author": "Kevin Lopez @RGkevin",
   "bin": {
-    "mvtem": "./bin/run"
+    "migrar": "./bin/run"
   },
-  "bugs": "https://github.com/RGkevin/mvtem/issues",
+  "bugs": "https://github.com/RGkevin/migrar/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -29,18 +29,18 @@
   ],
   "homepage": "https://github.com/RGkevin/mvtem",
   "keywords": [
-    "oclif"
+    "migrar"
   ],
   "license": "MIT",
   "main": "src/index.js",
   "oclif": {
     "commands": "./src/commands",
-    "bin": "mvtem",
+    "bin": "migrar",
     "plugins": [
       "@oclif/plugin-help"
     ]
   },
-  "repository": "RGkevin/mvtem",
+  "repository": "RGkevin/migrar",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint .",
