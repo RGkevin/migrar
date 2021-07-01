@@ -1,6 +1,6 @@
 const path = require('path')
 
-class ExtensionPathsUtil {
+class PropertyPathsUtil {
   constructor({args, flags}) {
     this.args = args
     this.flags = flags
@@ -16,13 +16,19 @@ class ExtensionPathsUtil {
 
   parsePaths() {
     const {from, to} = this.args
-    const {epath} = this.flags
+    const {
+      fileName,
+      channel,
+      apath,
+    } = this.flags
     // parse paths
     return {
-      fromExtPath: path.join(from, epath),
-      toExtPath: path.join(to, epath),
+      fromAppPropertiesFilePath: path.join(from, fileName),
+      fromActionsPath: path.join(from, apath, channel),
+      toActionsPath: path.join(to, apath, channel),
+      toAppPropertiesFilePath: path.join(to, fileName),
     }
   }
 }
 
-module.exports = ExtensionPathsUtil
+module.exports = PropertyPathsUtil
