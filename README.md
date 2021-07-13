@@ -19,7 +19,7 @@ $ npm install -g migrar
 $ migrar COMMAND
 running command...
 $ migrar (-v|--version|version)
-migrar/3.1.0 darwin-x64 node-v15.4.0
+migrar/3.2.0 darwin-x64 node-v15.4.0
 $ migrar --help [COMMAND]
 USAGE
   $ migrar COMMAND
@@ -29,12 +29,10 @@ USAGE
 # Commands
 <!-- commands -->
 * [`migrar components`](#migrar-components)
-* [`migrar dependencies FROM TO`](#migrar-dependencies-from-to)
 * [`migrar extensions FROM TO`](#migrar-extensions-from-to)
-* [`migrar fix`](#migrar-fix)
+* [`migrar fix TO NAME`](#migrar-fix-to-name)
 * [`migrar form FROM TO NAME`](#migrar-form-from-to-name)
 * [`migrar help [COMMAND]`](#migrar-help-command)
-* [`migrar module FROM TO NAME`](#migrar-module-from-to-name)
 * [`migrar modules FROM TO`](#migrar-modules-from-to)
 * [`migrar property FROM TO`](#migrar-property-from-to)
 * [`migrar templates`](#migrar-templates)
@@ -55,26 +53,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/components.js](https://github.com/RGkevin/migrar/blob/v3.1.0/src/commands/components.js)_
-
-## `migrar dependencies FROM TO`
-
-Describe the command here
-
-```
-USAGE
-  $ migrar dependencies FROM TO
-
-ARGUMENTS
-  FROM  Old project workspace path
-  TO    Destination project workspace path
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
-```
-
-_See code: [src/commands/dependencies.js](https://github.com/RGkevin/migrar/blob/v3.1.0/src/commands/dependencies.js)_
+_See code: [src/commands/components.js](https://github.com/RGkevin/migrar/blob/v3.2.0/src/commands/components.js)_
 
 ## `migrar extensions FROM TO`
 
@@ -96,25 +75,31 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v3.1.0/src/commands/extensions.js)_
+_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v3.2.0/src/commands/extensions.js)_
 
-## `migrar fix`
+## `migrar fix TO NAME`
 
 Describe the command here
 
 ```
 USAGE
-  $ migrar fix
+  $ migrar fix TO NAME
+
+ARGUMENTS
+  TO    Destination project workspace path
+  NAME  Form Name
 
 OPTIONS
-  -n, --name=name  name to print
+  -h, --channel=channel         [default: mobile] Platform channel
+  -o, --apath=apath             (required) [default: studioactions] Studio Actions path
+  -t, --type=controller|action  (required) Fix type
 
 DESCRIPTION
   ...
   Extra documentation goes here
 ```
 
-_See code: [src/commands/fix.js](https://github.com/RGkevin/migrar/blob/v3.1.0/src/commands/fix.js)_
+_See code: [src/commands/fix.js](https://github.com/RGkevin/migrar/blob/v3.2.0/src/commands/fix.js)_
 
 ## `migrar form FROM TO NAME`
 
@@ -148,7 +133,7 @@ DESCRIPTION
   Please make sure the destination workspace is in a clean git state
 ```
 
-_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v3.1.0/src/commands/form.js)_
+_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v3.2.0/src/commands/form.js)_
 
 ## `migrar help [COMMAND]`
 
@@ -166,29 +151,6 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
-
-## `migrar module FROM TO NAME`
-
-Describe the command here
-
-```
-USAGE
-  $ migrar module FROM TO NAME
-
-ARGUMENTS
-  FROM  Old project workspace path
-  TO    Destination project workspace path
-  NAME  Form Name
-
-OPTIONS
-  -l, --legacy=legacy  Module legacy name. Use if module is not in a parent directory
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
-```
-
-_See code: [src/commands/module.js](https://github.com/RGkevin/migrar/blob/v3.1.0/src/commands/module.js)_
 
 ## `migrar modules FROM TO`
 
@@ -210,7 +172,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v3.1.0/src/commands/modules.js)_
+_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v3.2.0/src/commands/modules.js)_
 
 ## `migrar property FROM TO`
 
@@ -236,7 +198,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v3.1.0/src/commands/property.js)_
+_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v3.2.0/src/commands/property.js)_
 
 ## `migrar templates`
 
@@ -254,5 +216,5 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/templates.js](https://github.com/RGkevin/migrar/blob/v3.1.0/src/commands/templates.js)_
+_See code: [src/commands/templates.js](https://github.com/RGkevin/migrar/blob/v3.2.0/src/commands/templates.js)_
 <!-- commandsstop -->
