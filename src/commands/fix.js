@@ -6,7 +6,7 @@ const {Command, flags} = require('@oclif/command')
 class FixCommand extends Command {
   async run() {
     this.filesUtil = new FilesUtil({log: this.log})
-    const {flags: {type, apath, channel}, args: {to, name}} = this.parse(FixCommand)
+    const {flags: {type}} = this.parse(FixCommand)
 
     if (type === 'action') {
       this.fixAction()
@@ -40,7 +40,7 @@ class FixCommand extends Command {
   }
 
   fixForm() {
-    const {flags: {type, apath, channel, fpath, module}, args: {to, name}} = this.parse(FixCommand)
+    const {flags: {apath, channel, fpath, module}, args: {to, name}} = this.parse(FixCommand)
     const formPath = path.join(to, fpath, channel, module, name + '.sm')
     const globalIDs = []
     this.log(`Will fix form ${name} in module: ${module}\n     in: ${formPath} `)
@@ -48,38 +48,37 @@ class FixCommand extends Command {
     if (!fs.existsSync(formPath)) {
       throw new Error(`file path does not exists ${formPath}`)
     }
-    // TODO add fix form actions
     // obtener lista de archivos .json de un form basado en formPath
-    const files = fs.readdirSync(formPath);
+    const files = fs.readdirSync(formPath)
 
-    files.forEach( (element) => {
+    files.forEach(element => {
       const jsonPath = path.join(formPath, element)
       const ids = this.getActionsIDsFromFile(jsonPath)
 
       globalIDs.push(...ids)
-    });
+    })
 
-    globalIDs.forEach( (element) => {
-      const actionFilePath = path.join(to, apath, 'mobile/'+element+'.json')
-      //console.log("ACTION PATH :" + actionFilePath)
+    globalIDs.forEach(element => {
+      const actionFilePath = path.join(to, apath, 'mobile/' + element + '.json')
+      // console.log("ACTION PATH :" + actionFilePath)
       this.fixGlobalActions(actionFilePath, element)
-    });
+    })
   }
 
-  getActionsIDsFromFile(filePath){
+  getActionsIDsFromFile(filePath) {
     let fileJsonObj = this.filesUtil.getJsonFromFile(filePath)
     let fileActionsIDs = []
-  
+
+    // eslint-disable-next-line no-unused-vars
     for (let [key, value] of Object.entries(fileJsonObj)) {
-      if((typeof value == "string") && (value.substr(0, 3) == "AS_"))
+      if ((typeof value === 'string') && (value.substr(0, 3) === 'AS_'))
         fileActionsIDs.push(value)
     }
-    
+
     return fileActionsIDs
   }
 
   fixGlobalActions(path, name) {
-
     this.log(`Will fix action \n  with name: ${name}\n   in: ${path}`)
 
     // check if json file exists
@@ -94,8 +93,6 @@ class FixCommand extends Command {
 
     this.filesUtil.rewriteFile(path, fileJsonObj)
   }
-
-
 
   getFormatFromType() {
     const {flags: {type}} = this.parse(FixCommand)
