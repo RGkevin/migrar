@@ -5,11 +5,13 @@ const {Command, flags} = require('@oclif/command')
 
 class FixCommand extends Command {
   async run() {
+    const {flags: {type, apath, channel}, args: {to, name}} = this.parse(FixCommand)
     this.filesUtil = new FilesUtil({log: this.log})
-    const {flags: {type}} = this.parse(FixCommand)
+    // const {flags: {type}} = this.parse(FixCommand)
 
     if (type === 'action') {
-      this.fixAction()
+      const fileToFixPath = path.join(to, apath, channel, name + this.getFormatFromType())
+      this.fixAction(fileToFixPath, name)
     } else if (type === 'controller') {
       this.fixController()
     } else if (type === 'form') {
@@ -17,13 +19,12 @@ class FixCommand extends Command {
     }
   }
 
-  fixAction() {
-    const {flags: {type, apath, channel}, args: {to, name}} = this.parse(FixCommand)
-    const fileToFixPath = path.join(to, apath, channel, name + this.getFormatFromType())
-    this.log(`Will fix ${type} \n  with name: ${fileToFixPath}\n   in: ${to}`)
+  fixAction(fileToFixPath, actionObj) {
+    const name = actionObj.value
+    this.log(`Will fix action \n  with name: ${name}\n   in: ${fileToFixPath}`)
 
     // check if json file exists
-    if (!fs.existsSync(fileToFixPath)) throw new Error(`File does not exists: \n    ${fileToFixPath}`)
+    if (!fs.existsSync(fileToFixPath)) throw new Error(`File does not exists: \n    ${fileToFixPath} \n action found in : ${actionObj.where}`)
 
     // load json file object
     let fileJsonObj = this.filesUtil.getJsonFromFile(fileToFixPath)
@@ -59,9 +60,9 @@ class FixCommand extends Command {
     })
 
     globalIDs.forEach(element => {
-      const actionFilePath = path.join(to, apath, 'mobile/' + element + '.json')
+      const actionFilePath = path.join(to, apath, channel, element.value + '.json')
       // console.log("ACTION PATH :" + actionFilePath)
-      this.fixGlobalActions(actionFilePath, element)
+      this.fixAction(actionFilePath, element)
     })
   }
 
@@ -72,26 +73,13 @@ class FixCommand extends Command {
     // eslint-disable-next-line no-unused-vars
     for (let [key, value] of Object.entries(fileJsonObj)) {
       if ((typeof value === 'string') && (value.substr(0, 3) === 'AS_'))
-        fileActionsIDs.push(value)
+        fileActionsIDs.push({
+          where: filePath,
+          value,
+        })
     }
 
     return fileActionsIDs
-  }
-
-  fixGlobalActions(path, name) {
-    this.log(`Will fix action \n  with name: ${name}\n   in: ${path}`)
-
-    // check if json file exists
-    if (!fs.existsSync(path)) throw new Error(`File does not exists: \n    ${path}`)
-
-    // load json file object
-    let fileJsonObj = this.filesUtil.getJsonFromFile(path)
-    const actionsInFile = fileJsonObj[name] && fileJsonObj[name].actions ? fileJsonObj[name].actions : []
-    // will try to fix actions
-    this.log(`Will try to fix (${actionsInFile.length}) actions`)
-    fileJsonObj[name].actions = actionsInFile.map(a => this.canChangeInvokeToSnippet(a) ? this.changeInvokeToSnippet(a) : a)
-
-    this.filesUtil.rewriteFile(path, fileJsonObj)
   }
 
   getFormatFromType() {

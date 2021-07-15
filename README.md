@@ -19,7 +19,7 @@ $ npm install -g migrar
 $ migrar COMMAND
 running command...
 $ migrar (-v|--version|version)
-migrar/3.2.0 darwin-x64 node-v15.4.0
+migrar/3.3.0 darwin-x64 node-v15.4.0
 $ migrar --help [COMMAND]
 USAGE
   $ migrar COMMAND
@@ -53,7 +53,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/components.js](https://github.com/RGkevin/migrar/blob/v3.2.0/src/commands/components.js)_
+_See code: [src/commands/components.js](https://github.com/RGkevin/migrar/blob/v3.3.0/src/commands/components.js)_
 
 ## `migrar extensions FROM TO`
 
@@ -75,7 +75,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v3.2.0/src/commands/extensions.js)_
+_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v3.3.0/src/commands/extensions.js)_
 
 ## `migrar fix TO NAME`
 
@@ -90,16 +90,18 @@ ARGUMENTS
   NAME  Form Name
 
 OPTIONS
-  -h, --channel=channel         [default: mobile] Platform channel
-  -o, --apath=apath             (required) [default: studioactions] Studio Actions path
-  -t, --type=controller|action  (required) Fix type
+  -f, --fpath=fpath                  (required) [default: forms] Forms path
+  -h, --channel=channel              [default: mobile] Platform channel
+  -m, --module=module                [default: AuthModule] Module name
+  -o, --apath=apath                  (required) [default: studioactions] Studio Actions path
+  -t, --type=controller|action|form  (required) Fix type
 
 DESCRIPTION
   ...
   Extra documentation goes here
 ```
 
-_See code: [src/commands/fix.js](https://github.com/RGkevin/migrar/blob/v3.2.0/src/commands/fix.js)_
+_See code: [src/commands/fix.js](https://github.com/RGkevin/migrar/blob/v3.3.0/src/commands/fix.js)_
 
 ## `migrar form FROM TO NAME`
 
@@ -133,7 +135,7 @@ DESCRIPTION
   Please make sure the destination workspace is in a clean git state
 ```
 
-_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v3.2.0/src/commands/form.js)_
+_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v3.3.0/src/commands/form.js)_
 
 ## `migrar help [COMMAND]`
 
@@ -172,7 +174,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v3.2.0/src/commands/modules.js)_
+_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v3.3.0/src/commands/modules.js)_
 
 ## `migrar property FROM TO`
 
@@ -198,7 +200,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v3.2.0/src/commands/property.js)_
+_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v3.3.0/src/commands/property.js)_
 
 ## `migrar templates`
 
@@ -216,5 +218,5 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/templates.js](https://github.com/RGkevin/migrar/blob/v3.2.0/src/commands/templates.js)_
+_See code: [src/commands/templates.js](https://github.com/RGkevin/migrar/blob/v3.3.0/src/commands/templates.js)_
 <!-- commandsstop -->
