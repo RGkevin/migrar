@@ -7,7 +7,6 @@ class FixCommand extends Command {
   async run() {
     const {flags: {type, apath, channel}, args: {to, name}} = this.parse(FixCommand)
     this.filesUtil = new FilesUtil({log: this.log})
-    // const {flags: {type}} = this.parse(FixCommand)
 
     if (type === 'action') {
       const fileToFixPath = path.join(to, apath, channel, name + this.getFormatFromType())
@@ -21,7 +20,7 @@ class FixCommand extends Command {
 
   fixAction(fileToFixPath, actionObj) {
     const name = actionObj.value
-    this.log(`Will fix action \n  with name: ${name}\n   in: ${fileToFixPath}`)
+    this.log(`\nWill fix action \n  with name: ${name}\n   in: ${fileToFixPath}`)
 
     // check if json file exists
     if (!fs.existsSync(fileToFixPath)) throw new Error(`File does not exists: \n    ${fileToFixPath} \n action found in : ${actionObj.where}`)
@@ -30,10 +29,21 @@ class FixCommand extends Command {
     let fileJsonObj = this.filesUtil.getJsonFromFile(fileToFixPath)
     const actionsInFile = fileJsonObj[name] && fileJsonObj[name].actions ? fileJsonObj[name].actions : []
     // will try to fix actions
-    this.log(`Will try to fix (${actionsInFile.length}) actions`)
+    this.log(`   total actions (${actionsInFile.length})`)
+
+    // check if actions doesn't require to be changed
+    if (actionsInFile.every(a => this.canBeIgnored(a))) {
+      this.log('     All actions can be ignored')
+      return
+    }
+
     fileJsonObj[name].actions = actionsInFile.map(a => this.canChangeInvokeToSnippet(a) ? this.changeInvokeToSnippet(a) : a)
 
     this.filesUtil.rewriteFile(fileToFixPath, fileJsonObj)
+  }
+
+  canBeIgnored(action) {
+    return !this.canChangeInvokeToSnippet(action)
   }
 
   fixController() {
