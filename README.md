@@ -1,31 +1,35 @@
-mvtem
+migrar
 =====
 
-Move temenos apps contents to another temenos app workspace
+Migrate temenos apps contents to another app
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/mvtem.svg)](https://npmjs.org/package/mvtem)
-[![Downloads/week](https://img.shields.io/npm/dw/mvtem.svg)](https://npmjs.org/package/mvtem)
-[![License](https://img.shields.io/npm/l/mvtem.svg)](https://github.com/RGkevin/mvtem/blob/master/package.json)
+[![Version](https://img.shields.io/npm/v/migrar.svg)](https://npmjs.org/package/migrar)
+[![Downloads/week](https://img.shields.io/npm/dw/migrar.svg)](https://npmjs.org/package/migrar)
+[![License](https://img.shields.io/npm/l/migrar.svg)](https://github.com/RGkevin/migrar/blob/master/package.json)
 
 <!-- toc -->
+* [Installation](#installation)
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
+# Installation
+```shell
+$ npm install -g migrar
+```
+### Check installation
+```shell
+$ migrar (-v|--version|version)
+migrar/3.4.5 darwin-x64 node-v15.4.0
+```
+
 # Usage
 <!-- usage -->
-```sh-session
-$ npm install -g migrar
+```shell
 $ migrar COMMAND
-running command...
-$ migrar (-v|--version|version)
-migrar/3.3.0 darwin-x64 node-v15.4.0
-$ migrar --help [COMMAND]
-USAGE
-  $ migrar COMMAND
-...
 ```
 <!-- usagestop -->
+
 # Commands
 <!-- commands -->
 * [`migrar components`](#migrar-components)

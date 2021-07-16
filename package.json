@@ -1,7 +1,7 @@
 {
   "name": "migrar",
   "description": "Migration tool for temenos visualizer projects",
-  "version": "3.4.0",
+  "version": "3.4.5",
   "author": "Kevin Lopez @RGkevin",
   "bin": {
     "migrar": "./bin/run"
@@ -27,7 +27,7 @@
     "/oclif.manifest.json",
     "/src"
   ],
-  "homepage": "https://github.com/RGkevin/mvtem",
+  "homepage": "https://github.com/RGkevin/migrar",
   "keywords": [
     "migrar"
   ],
