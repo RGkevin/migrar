@@ -113,15 +113,17 @@ class FixCommand extends Command {
   }
 }
 
-FixCommand.description = `Describe the command here
-...
-Extra documentation goes here
+FixCommand.description = `Fix an app component. Use -t to specify the type of component
+Type can be:
+- action
+- form
+- controller
 `
 
 FixCommand.flags = {
   type: flags.string({
     char: 't',
-    description: 'Fix type',
+    description: 'Component type to fix',
     options: ['controller', 'action', 'form'],
     required: true,
   }),
