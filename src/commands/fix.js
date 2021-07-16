@@ -5,11 +5,12 @@ const {Command, flags} = require('@oclif/command')
 
 class FixCommand extends Command {
   async run() {
-    this.filesUtil = new FilesUtil({log: this.log})
     const {flags: {type, apath, channel}, args: {to, name}} = this.parse(FixCommand)
+    this.filesUtil = new FilesUtil({log: this.log})
 
     if (type === 'action') {
-      this.fixAction()
+      const fileToFixPath = path.join(to, apath, channel, name + this.getFormatFromType())
+      this.fixAction(fileToFixPath, name)
     } else if (type === 'controller') {
       this.fixController()
     } else if (type === 'form') {
@@ -17,22 +18,32 @@ class FixCommand extends Command {
     }
   }
 
-  fixAction() {
-    const {flags: {type, apath, channel}, args: {to, name}} = this.parse(FixCommand)
-    const fileToFixPath = path.join(to, apath, channel, name + this.getFormatFromType())
-    this.log(`Will fix ${type} \n  with name: ${fileToFixPath}\n   in: ${to}`)
+  fixAction(fileToFixPath, actionObj) {
+    const name = actionObj.value
+    this.log(`\nWill fix action \n  with name: ${name}\n   in: ${fileToFixPath}`)
 
     // check if json file exists
-    if (!fs.existsSync(fileToFixPath)) throw new Error(`File does not exists: \n    ${fileToFixPath}`)
+    if (!fs.existsSync(fileToFixPath)) throw new Error(`File does not exists: \n    ${fileToFixPath} \n action found in : ${actionObj.where}`)
 
     // load json file object
     let fileJsonObj = this.filesUtil.getJsonFromFile(fileToFixPath)
     const actionsInFile = fileJsonObj[name] && fileJsonObj[name].actions ? fileJsonObj[name].actions : []
     // will try to fix actions
-    this.log(`Will try to fix (${actionsInFile.length}) actions`)
+    this.log(`   total actions (${actionsInFile.length})`)
+
+    // check if actions doesn't require to be changed
+    if (actionsInFile.every(a => this.canBeIgnored(a))) {
+      this.log('     All actions can be ignored')
+      return
+    }
+
     fileJsonObj[name].actions = actionsInFile.map(a => this.canChangeInvokeToSnippet(a) ? this.changeInvokeToSnippet(a) : a)
 
     this.filesUtil.rewriteFile(fileToFixPath, fileJsonObj)
+  }
+
+  canBeIgnored(action) {
+    return !this.canChangeInvokeToSnippet(action)
   }
 
   fixController() {
@@ -40,24 +51,45 @@ class FixCommand extends Command {
   }
 
   fixForm() {
-    const {flags: {type, apath, channel, fpath, module}, args: {to, name}} = this.parse(FixCommand)
+    const {flags: {apath, channel, fpath, module}, args: {to, name}} = this.parse(FixCommand)
     const formPath = path.join(to, fpath, channel, module, name + '.sm')
+    const globalIDs = []
     this.log(`Will fix form ${name} in module: ${module}\n     in: ${formPath} `)
 
     if (!fs.existsSync(formPath)) {
       throw new Error(`file path does not exists ${formPath}`)
     }
-    // TODO add fix form actions
     // obtener lista de archivos .json de un form basado en formPath
+    const files = fs.readdirSync(formPath)
 
+    files.forEach(element => {
+      const jsonPath = path.join(formPath, element)
+      const ids = this.getActionsIDsFromFile(jsonPath)
 
-    // revisar cada archivo .json y obtener los actions ids si existen
+      globalIDs.push(...ids)
+    })
 
-    // para cada id encontrado agregarlos a un array global
+    globalIDs.forEach(element => {
+      const actionFilePath = path.join(to, apath, channel, element.value + '.json')
+      // console.log("ACTION PATH :" + actionFilePath)
+      this.fixAction(actionFilePath, element)
+    })
+  }
 
-    // usando el array con los actions ids iterar cada uno y hacer un fixAction
+  getActionsIDsFromFile(filePath) {
+    let fileJsonObj = this.filesUtil.getJsonFromFile(filePath)
+    let fileActionsIDs = []
 
-    //
+    // eslint-disable-next-line no-unused-vars
+    for (let [key, value] of Object.entries(fileJsonObj)) {
+      if ((typeof value === 'string') && (value.substr(0, 3) === 'AS_'))
+        fileActionsIDs.push({
+          where: filePath,
+          value,
+        })
+    }
+
+    return fileActionsIDs
   }
 
   getFormatFromType() {
