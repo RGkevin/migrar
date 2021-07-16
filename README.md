@@ -3,30 +3,26 @@ migrar
 
 Migrate temenos apps contents to another app
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/migrar.svg)](https://npmjs.org/package/migrar)
 [![Downloads/week](https://img.shields.io/npm/dw/migrar.svg)](https://npmjs.org/package/migrar)
 [![License](https://img.shields.io/npm/l/migrar.svg)](https://github.com/RGkevin/migrar/blob/master/package.json)
 
 <!-- toc -->
-* [Installation](#installation)
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
-# Installation
-```shell
-$ npm install -g migrar
-```
-### Check installation
-```shell
-$ migrar (-v|--version|version)
-migrar/3.4.5 darwin-x64 node-v15.4.0
-```
-
 # Usage
 <!-- usage -->
-```shell
+```sh-session
+$ npm install -g migrar
 $ migrar COMMAND
+running command...
+$ migrar (-v|--version|version)
+migrar/3.4.5 darwin-x64 node-v15.4.0
+$ migrar --help [COMMAND]
+USAGE
+  $ migrar COMMAND
+...
 ```
 <!-- usagestop -->
 
@@ -57,7 +53,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/components.js](https://github.com/RGkevin/migrar/blob/v3.3.0/src/commands/components.js)_
+_See code: [src/commands/components.js](https://github.com/RGkevin/migrar/blob/v3.4.5/src/commands/components.js)_
 
 ## `migrar extensions FROM TO`
 
@@ -79,11 +75,11 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v3.3.0/src/commands/extensions.js)_
+_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v3.4.5/src/commands/extensions.js)_
 
 ## `migrar fix TO NAME`
 
-Describe the command here
+Fix an app component. Use -t to specify the type of component
 
 ```
 USAGE
@@ -98,14 +94,16 @@ OPTIONS
   -h, --channel=channel              [default: mobile] Platform channel
   -m, --module=module                [default: AuthModule] Module name
   -o, --apath=apath                  (required) [default: studioactions] Studio Actions path
-  -t, --type=controller|action|form  (required) Fix type
+  -t, --type=controller|action|form  (required) Component type to fix
 
 DESCRIPTION
-  ...
-  Extra documentation goes here
+  Type can be:
+  - action
+  - form
+  - controller
 ```
 
-_See code: [src/commands/fix.js](https://github.com/RGkevin/migrar/blob/v3.3.0/src/commands/fix.js)_
+_See code: [src/commands/fix.js](https://github.com/RGkevin/migrar/blob/v3.4.5/src/commands/fix.js)_
 
 ## `migrar form FROM TO NAME`
 
@@ -139,7 +137,7 @@ DESCRIPTION
   Please make sure the destination workspace is in a clean git state
 ```
 
-_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v3.3.0/src/commands/form.js)_
+_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v3.4.5/src/commands/form.js)_
 
 ## `migrar help [COMMAND]`
 
@@ -178,7 +176,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v3.3.0/src/commands/modules.js)_
+_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v3.4.5/src/commands/modules.js)_
 
 ## `migrar property FROM TO`
 
@@ -204,7 +202,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v3.3.0/src/commands/property.js)_
+_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v3.4.5/src/commands/property.js)_
 
 ## `migrar templates`
 
@@ -222,5 +220,5 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/templates.js](https://github.com/RGkevin/migrar/blob/v3.3.0/src/commands/templates.js)_
+_See code: [src/commands/templates.js](https://github.com/RGkevin/migrar/blob/v3.4.5/src/commands/templates.js)_
 <!-- commandsstop -->
