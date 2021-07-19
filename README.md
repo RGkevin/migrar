@@ -29,6 +29,7 @@ USAGE
 # Commands
 <!-- commands -->
 * [`migrar components`](#migrar-components)
+* [`migrar controller`](#migrar-controller)
 * [`migrar extensions FROM TO`](#migrar-extensions-from-to)
 * [`migrar fix TO NAME`](#migrar-fix-to-name)
 * [`migrar form FROM TO NAME`](#migrar-form-from-to-name)
@@ -54,6 +55,24 @@ DESCRIPTION
 ```
 
 _See code: [src/commands/components.js](https://github.com/RGkevin/migrar/blob/v3.4.5/src/commands/components.js)_
+
+## `migrar controller`
+
+Describe the command here
+
+```
+USAGE
+  $ migrar controller
+
+OPTIONS
+  -n, --name=name  name to print
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/controller.js](https://github.com/RGkevin/migrar/blob/v3.4.5/src/commands/controller.js)_
 
 ## `migrar extensions FROM TO`
 
