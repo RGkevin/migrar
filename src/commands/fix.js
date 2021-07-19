@@ -2,6 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const FilesUtil = require('../util/files')
 const {Command, flags} = require('@oclif/command')
+const ControllerCommand = require('./controller')
 
 class FixCommand extends Command {
   async run() {
@@ -11,10 +12,9 @@ class FixCommand extends Command {
     if (type === 'action') {
       const fileToFixPath = path.join(to, apath, channel, name + this.getFormatFromType())
       this.fixAction(fileToFixPath, name)
-    } else if (type === 'controller') {
-      this.fixController()
     } else if (type === 'form') {
       this.fixForm()
+      await this.fixController()
     }
   }
 
@@ -46,8 +46,19 @@ class FixCommand extends Command {
     return !this.canChangeInvokeToSnippet(action)
   }
 
-  fixController() {
-    // TODO add controller fix logic
+  async fixController() {
+    // fix controller
+    const {flags: {module, channel, cpath, ctrl, epath, suffix}, args: {to, name}} = this.parse(FixCommand)
+    const controllerFileName = name + ctrl
+    const extendedControllerFile = name + suffix + ctrl
+    let controllerPathToFix = path.join(to, epath, extendedControllerFile + '.js')
+    if (!fs.existsSync(controllerPathToFix)) {
+      controllerPathToFix = path.join(to, cpath, channel, module, controllerFileName, controllerFileName + '.js')
+    }
+
+    this.log('will fix controller')
+    this.log(controllerPathToFix)
+    await ControllerCommand.run([controllerPathToFix])
   }
 
   fixForm() {
@@ -69,11 +80,15 @@ class FixCommand extends Command {
       globalIDs.push(...ids)
     })
 
-    globalIDs.forEach(element => {
-      const actionFilePath = path.join(to, apath, channel, element.value + '.json')
-      // console.log("ACTION PATH :" + actionFilePath)
-      this.fixAction(actionFilePath, element)
-    })
+    try {
+      globalIDs.forEach(element => {
+        const actionFilePath = path.join(to, apath, channel, element.value + '.json')
+        // console.log("ACTION PATH :" + actionFilePath)
+        this.fixAction(actionFilePath, element)
+      })
+    } catch (error) {
+      this.log('Some actions could not be fixed :: ' + error)
+    }
   }
 
   getActionsIDsFromFile(filePath) {
@@ -125,12 +140,17 @@ FixCommand.flags = {
     char: 't',
     description: 'Component type to fix',
     options: ['controller', 'action', 'form'],
-    required: true,
+    default: 'form',
   }),
   apath: flags.string({char: 'o', description: 'Studio Actions path', default: 'studioactions', required: true}),
   fpath: flags.string({char: 'f', description: 'Forms path', default: 'forms', required: true}),
+  cpath: flags.string({char: 'c', description: 'Controllers library path', default: 'controllers'}),
   channel: flags.string({char: 'h', description: 'Platform channel', default: 'mobile'}),
   module: flags.string({char: 'm', description: 'Module name', default: 'AuthModule'}),
+  ctrl: flags.string({char: 'l', description: 'Controllers suffix', default: 'Controller'}),
+  epath: flags.string({char: 'e', description: 'Controllers extension path', default: 'modules/require'}),
+  suffix: flags.string({char: 's', description: 'Project suffix identifier', default: 'BB'}),
+
 }
 
 FixCommand.args = [
