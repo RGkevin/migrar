@@ -18,7 +18,7 @@ $ npm install -g migrar
 $ migrar COMMAND
 running command...
 $ migrar (-v|--version|version)
-migrar/3.5.1 darwin-x64 node-v15.4.0
+migrar/3.6.5 darwin-x64 node-v15.4.0
 $ migrar --help [COMMAND]
 USAGE
   $ migrar COMMAND
@@ -54,7 +54,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/components.js](https://github.com/RGkevin/migrar/blob/v3.5.1/src/commands/components.js)_
+_See code: [src/commands/components.js](https://github.com/RGkevin/migrar/blob/v3.6.5/src/commands/components.js)_
 
 ## `migrar controller TO`
 
@@ -71,7 +71,7 @@ DESCRIPTION
   use the absolute path to the file
 ```
 
-_See code: [src/commands/controller.js](https://github.com/RGkevin/migrar/blob/v3.5.1/src/commands/controller.js)_
+_See code: [src/commands/controller.js](https://github.com/RGkevin/migrar/blob/v3.6.5/src/commands/controller.js)_
 
 ## `migrar extensions FROM TO`
 
@@ -93,7 +93,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v3.5.1/src/commands/extensions.js)_
+_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v3.6.5/src/commands/extensions.js)_
 
 ## `migrar fix TO NAME`
 
@@ -108,11 +108,15 @@ ARGUMENTS
   NAME  Form Name
 
 OPTIONS
+  -c, --cpath=cpath                  [default: controllers] Controllers library path
+  -e, --epath=epath                  [default: modules/require] Controllers extension path
   -f, --fpath=fpath                  (required) [default: forms] Forms path
   -h, --channel=channel              [default: mobile] Platform channel
+  -l, --ctrl=ctrl                    [default: Controller] Controllers suffix
   -m, --module=module                [default: AuthModule] Module name
   -o, --apath=apath                  (required) [default: studioactions] Studio Actions path
-  -t, --type=controller|action|form  (required) Component type to fix
+  -s, --suffix=suffix                [default: BB] Project suffix identifier
+  -t, --type=controller|action|form  [default: form] Component type to fix
 
 DESCRIPTION
   Type can be:
@@ -121,7 +125,7 @@ DESCRIPTION
   - controller
 ```
 
-_See code: [src/commands/fix.js](https://github.com/RGkevin/migrar/blob/v3.5.1/src/commands/fix.js)_
+_See code: [src/commands/fix.js](https://github.com/RGkevin/migrar/blob/v3.6.5/src/commands/fix.js)_
 
 ## `migrar form FROM TO NAME`
 
@@ -149,13 +153,14 @@ OPTIONS
   -p, --mpath=mpath      [default: mvcextensions] MVC Extensions path
   -r, --format=format    [default: .sm] Folder format suffix
   -s, --suffix=suffix    [default: BB] Project suffix identifier
+  -x, --xform            Fix migrated form
 
 DESCRIPTION
   ...
   Please make sure the destination workspace is in a clean git state
 ```
 
-_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v3.5.1/src/commands/form.js)_
+_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v3.6.5/src/commands/form.js)_
 
 ## `migrar help [COMMAND]`
 
@@ -194,7 +199,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v3.5.1/src/commands/modules.js)_
+_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v3.6.5/src/commands/modules.js)_
 
 ## `migrar property FROM TO`
 
@@ -220,7 +225,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v3.5.1/src/commands/property.js)_
+_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v3.6.5/src/commands/property.js)_
 
 ## `migrar templates`
 
@@ -238,5 +243,5 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/templates.js](https://github.com/RGkevin/migrar/blob/v3.5.1/src/commands/templates.js)_
+_See code: [src/commands/templates.js](https://github.com/RGkevin/migrar/blob/v3.6.5/src/commands/templates.js)_
 <!-- commandsstop -->

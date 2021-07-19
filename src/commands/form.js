@@ -2,17 +2,17 @@ const fs = require('fs')
 const {Command, flags} = require('@oclif/command')
 const FilesUtil = require('../util/files')
 const FormPathsUtil = require('../util/form-paths')
+const FixCommand = require('./fix')
 
 class FormCommand extends Command {
   async run() {
     // files utility instance
     const filesUtil = new FilesUtil({log: this.log})
+    // get flags and args
     const {flags, args} = this.parse(FormCommand)
     this.pathsUtil = new FormPathsUtil({flags, args})
-    // get flags and args
-    const {
-      args: {from},
-    } = this.parse(FormCommand)
+    const {xform} = flags
+    const {from} = args
     const {
       fromFormPath,
       fromCtrlPath,
@@ -66,6 +66,17 @@ class FormCommand extends Command {
       moduleConfig = this.getMConfigAsNewForm(moduleConfig)
     }
     filesUtil.rewriteFile(toMConfigPath, moduleConfig)
+
+    // fix form
+    if (xform) {
+      await this.fixForm()
+    }
+  }
+
+  async fixForm() {
+    const {flags: {mname}, args: {to, name}} = this.parse(FormCommand)
+    this.log('\n Fix form included ::\n')
+    await FixCommand.run(['-m', mname, to, name])
   }
 
   getMConfigAsNewForm(moduleConfig) {
@@ -132,6 +143,7 @@ FormCommand.flags = {
   epath: flags.string({char: 'e', description: 'Controllers extension path', default: 'modules/require'}),
   opath: flags.string({char: 'o', description: 'Old project workspace path', default: '~/Visualizer/', required: true}),
   suffix: flags.string({char: 's', description: 'Project suffix identifier', default: 'BB'}),
+  xform: flags.boolean({char: 'x', description: 'Fix migrated form', default: false}),
 }
 
 FormCommand.args = [
