@@ -22,15 +22,16 @@ class ControllerCommand extends Command {
     ]
 
     if (!fs.existsSync(to)) throw new Error(`File does not exists: \n    ${to}`)
-    fixStrings.forEach(element => {
-      this.filesUtil.findAndReplace(to, element.oldString, element.newString)
-    })
+    for (let i = 0, len = fixStrings.length; i < len; i++) {
+      const element = fixStrings[i]
+      // eslint-disable-next-line no-await-in-loop
+      await this.filesUtil.findAndReplace(to, element.oldString, element.newString)
+    }
   }
 }
 
-ControllerCommand.description = `Describe the command here
-...
-Extra documentation goes here
+ControllerCommand.description = `Fix javascript file
+use the absolute path to the file
 `
 ControllerCommand.args = [
   {name: 'to', description: 'Controller path to fix', required: true},
