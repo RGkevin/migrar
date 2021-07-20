@@ -1,7 +1,7 @@
 migrar
 =====
 
-Migrate temenos apps contents to another app
+Migrate legacy Visualizer apps based on dbx 4 or less to dbx ^20.10
 
 [![Version](https://img.shields.io/npm/v/migrar.svg)](https://npmjs.org/package/migrar)
 [![Downloads/week](https://img.shields.io/npm/dw/migrar.svg)](https://npmjs.org/package/migrar)
