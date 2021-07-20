@@ -3,6 +3,7 @@ const {Command, flags} = require('@oclif/command')
 const FilesUtil = require('../util/files')
 const FormPathsUtil = require('../util/form-paths')
 const FixCommand = require('./fix')
+const path = require('path')
 
 class FormCommand extends Command {
   async run() {
@@ -11,7 +12,7 @@ class FormCommand extends Command {
     // get flags and args
     const {flags, args} = this.parse(FormCommand)
     this.pathsUtil = new FormPathsUtil({flags, args})
-    const {xform} = flags
+    const {xform, mname} = flags
     const {from} = args
     const {
       fromFormPath,
@@ -42,8 +43,12 @@ class FormCommand extends Command {
       // copy and replace .json files
       this.log(`- Will move BASE files from \n    ${fromFormPath} \n    and then move OLD form as EXTENSION`)
       // move files and then replace with the old one
-      if (!fs.existsSync(toModuleFormPath)) throw new Error(`Invalid toModuleFormPath ${toModuleFormPath}`)
-      if (!fs.existsSync(toModuleCtrlPath)) throw new Error(`Invalid toModuleCtrlPath ${toModuleCtrlPath}`)
+      if (!fs.existsSync(toModuleFormPath)){
+        await filesUtil.makeDir(path.join(toModuleFormPath, '/..'), mname)
+      }
+      if (!fs.existsSync(toModuleCtrlPath)){
+        await filesUtil.makeDir(path.join(toModuleCtrlPath, '/..'), mname)
+      }
       // move old json files
       await filesUtil.moveFiles(oldFormPath, toModuleFormPath)
       // move base controller files
