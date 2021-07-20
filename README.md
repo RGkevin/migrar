@@ -18,7 +18,7 @@ $ npm install -g migrar
 $ migrar COMMAND
 running command...
 $ migrar (-v|--version|version)
-migrar/3.6.6 darwin-x64 node-v15.4.0
+migrar/3.6.7 darwin-x64 node-v15.4.0
 $ migrar --help [COMMAND]
 USAGE
   $ migrar COMMAND
@@ -28,7 +28,6 @@ USAGE
 
 # Commands
 <!-- commands -->
-* [`migrar components`](#migrar-components)
 * [`migrar controller TO`](#migrar-controller-to)
 * [`migrar extensions FROM TO`](#migrar-extensions-from-to)
 * [`migrar fix TO NAME`](#migrar-fix-to-name)
@@ -36,25 +35,6 @@ USAGE
 * [`migrar help [COMMAND]`](#migrar-help-command)
 * [`migrar modules FROM TO`](#migrar-modules-from-to)
 * [`migrar property FROM TO`](#migrar-property-from-to)
-* [`migrar templates`](#migrar-templates)
-
-## `migrar components`
-
-Describe the command here
-
-```
-USAGE
-  $ migrar components
-
-OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
-```
-
-_See code: [src/commands/components.js](https://github.com/RGkevin/migrar/blob/v3.6.6/src/commands/components.js)_
 
 ## `migrar controller TO`
 
@@ -71,11 +51,11 @@ DESCRIPTION
   use the absolute path to the file
 ```
 
-_See code: [src/commands/controller.js](https://github.com/RGkevin/migrar/blob/v3.6.6/src/commands/controller.js)_
+_See code: [src/commands/controller.js](https://github.com/RGkevin/migrar/blob/v3.6.7/src/commands/controller.js)_
 
 ## `migrar extensions FROM TO`
 
-Describe the command here
+Move whole extensions folder from one project to another
 
 ```
 USAGE
@@ -87,13 +67,9 @@ ARGUMENTS
 
 OPTIONS
   -p, --epath=epath  [default: mvcextensions] MVC Extensions relative path
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
 ```
 
-_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v3.6.6/src/commands/extensions.js)_
+_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v3.6.7/src/commands/extensions.js)_
 
 ## `migrar fix TO NAME`
 
@@ -125,7 +101,7 @@ DESCRIPTION
   - controller
 ```
 
-_See code: [src/commands/fix.js](https://github.com/RGkevin/migrar/blob/v3.6.6/src/commands/fix.js)_
+_See code: [src/commands/fix.js](https://github.com/RGkevin/migrar/blob/v3.6.7/src/commands/fix.js)_
 
 ## `migrar form FROM TO NAME`
 
@@ -160,7 +136,7 @@ DESCRIPTION
   Please make sure the destination workspace is in a clean git state
 ```
 
-_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v3.6.6/src/commands/form.js)_
+_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v3.6.7/src/commands/form.js)_
 
 ## `migrar help [COMMAND]`
 
@@ -181,7 +157,7 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2
 
 ## `migrar modules FROM TO`
 
-Describe the command here
+Move whole modules folder from one project to another
 
 ```
 USAGE
@@ -193,17 +169,13 @@ ARGUMENTS
 
 OPTIONS
   -p, --mpath=mpath  [default: modules] Modules relative path
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
 ```
 
-_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v3.6.6/src/commands/modules.js)_
+_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v3.6.7/src/commands/modules.js)_
 
 ## `migrar property FROM TO`
 
-Describe the command here
+Move actions defined in project properties file
 
 ```
 USAGE
@@ -219,29 +191,7 @@ OPTIONS
   -n, --property=property  [default: ide_appEvents] Application Property name to migrate
   -p, --apath=apath        [default: studioactions] Studio Actions path
   -r, --format=format      [default: .json] Files format suffix
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
 ```
 
-_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v3.6.6/src/commands/property.js)_
-
-## `migrar templates`
-
-Describe the command here
-
-```
-USAGE
-  $ migrar templates
-
-OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
-```
-
-_See code: [src/commands/templates.js](https://github.com/RGkevin/migrar/blob/v3.6.6/src/commands/templates.js)_
+_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v3.6.7/src/commands/property.js)_
 <!-- commandsstop -->
