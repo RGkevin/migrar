@@ -49,9 +49,7 @@ class PropertyCommand extends Command {
   }
 }
 
-PropertyCommand.description = `Describe the command here
-...
-Extra documentation goes here
+PropertyCommand.description = `Move actions defined in project properties file
 `
 
 PropertyCommand.flags = {

@@ -15,9 +15,7 @@ class ExtensionsCommand extends Command {
   }
 }
 
-ExtensionsCommand.description = `Describe the command here
-...
-Extra documentation goes here
+ExtensionsCommand.description = `Move whole extensions folder from one project to another
 `
 
 ExtensionsCommand.flags = {

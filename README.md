@@ -18,7 +18,7 @@ $ npm install -g migrar
 $ migrar COMMAND
 running command...
 $ migrar (-v|--version|version)
-migrar/3.6.5 darwin-x64 node-v15.4.0
+migrar/3.6.6 darwin-x64 node-v15.4.0
 $ migrar --help [COMMAND]
 USAGE
   $ migrar COMMAND
@@ -54,7 +54,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/components.js](https://github.com/RGkevin/migrar/blob/v3.6.5/src/commands/components.js)_
+_See code: [src/commands/components.js](https://github.com/RGkevin/migrar/blob/v3.6.6/src/commands/components.js)_
 
 ## `migrar controller TO`
 
@@ -71,7 +71,7 @@ DESCRIPTION
   use the absolute path to the file
 ```
 
-_See code: [src/commands/controller.js](https://github.com/RGkevin/migrar/blob/v3.6.5/src/commands/controller.js)_
+_See code: [src/commands/controller.js](https://github.com/RGkevin/migrar/blob/v3.6.6/src/commands/controller.js)_
 
 ## `migrar extensions FROM TO`
 
@@ -93,7 +93,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v3.6.5/src/commands/extensions.js)_
+_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v3.6.6/src/commands/extensions.js)_
 
 ## `migrar fix TO NAME`
 
@@ -125,7 +125,7 @@ DESCRIPTION
   - controller
 ```
 
-_See code: [src/commands/fix.js](https://github.com/RGkevin/migrar/blob/v3.6.5/src/commands/fix.js)_
+_See code: [src/commands/fix.js](https://github.com/RGkevin/migrar/blob/v3.6.6/src/commands/fix.js)_
 
 ## `migrar form FROM TO NAME`
 
@@ -160,7 +160,7 @@ DESCRIPTION
   Please make sure the destination workspace is in a clean git state
 ```
 
-_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v3.6.5/src/commands/form.js)_
+_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v3.6.6/src/commands/form.js)_
 
 ## `migrar help [COMMAND]`
 
@@ -199,7 +199,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v3.6.5/src/commands/modules.js)_
+_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v3.6.6/src/commands/modules.js)_
 
 ## `migrar property FROM TO`
 
@@ -225,7 +225,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v3.6.5/src/commands/property.js)_
+_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v3.6.6/src/commands/property.js)_
 
 ## `migrar templates`
 
@@ -243,5 +243,5 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/templates.js](https://github.com/RGkevin/migrar/blob/v3.6.5/src/commands/templates.js)_
+_See code: [src/commands/templates.js](https://github.com/RGkevin/migrar/blob/v3.6.6/src/commands/templates.js)_
 <!-- commandsstop -->

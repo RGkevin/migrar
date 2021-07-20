@@ -15,9 +15,7 @@ class ModulesCommand extends Command {
   }
 }
 
-ModulesCommand.description = `Describe the command here
-...
-Extra documentation goes here
+ModulesCommand.description = `Move whole modules folder from one project to another
 `
 
 ModulesCommand.flags = {
