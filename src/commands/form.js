@@ -39,18 +39,20 @@ class FormCommand extends Command {
 
     // check if will replace form
     const willReplaceForm = fs.existsSync(fromFormPath)
+    // copy and replace .json files
+    this.log(`- Will move BASE files from \n    ${fromFormPath} \n    and then move OLD form as EXTENSION`)
+
+    // move files and then replace with the old one
+    if (!fs.existsSync(toModuleFormPath)) {
+      await filesUtil.makeDir(path.join(toModuleFormPath, '/..'), mname)
+      await filesUtil.makeDir(toModuleFormPath, name + '.sm')
+    }
+    if (!fs.existsSync(toModuleCtrlPath)) {
+      await filesUtil.makeDir(path.join(toModuleCtrlPath, '/..'), mname)
+      await filesUtil.makeDir(toModuleCtrlPath, name + '.sm')
+    }
+
     if (willReplaceForm) {
-      // copy and replace .json files
-      this.log(`- Will move BASE files from \n    ${fromFormPath} \n    and then move OLD form as EXTENSION`)
-      // move files and then replace with the old one
-      if (!fs.existsSync(toModuleFormPath)){
-        await filesUtil.makeDir(path.join(toModuleFormPath, '/..'), mname)
-        await filesUtil.makeDir(toModuleFormPath, name + '.sm')
-      }
-      if (!fs.existsSync(toModuleCtrlPath)){
-        await filesUtil.makeDir(path.join(toModuleCtrlPath, '/..'), mname)
-        await filesUtil.makeDir(toModuleFormPath, name + '.sm')
-      }
       // move old json files
       await filesUtil.moveFiles(oldFormPath, toModuleFormPath)
       // move base controller files
