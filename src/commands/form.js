@@ -45,11 +45,11 @@ class FormCommand extends Command {
       // move files and then replace with the old one
       if (!fs.existsSync(toModuleFormPath)){
         await filesUtil.makeDir(path.join(toModuleFormPath, '/..'), mname)
-        await filesUtil.makeDir(path.join(toModuleFormPath, name + '.sm'))
+        await filesUtil.makeDir(toModuleFormPath, name + '.sm')
       }
       if (!fs.existsSync(toModuleCtrlPath)){
         await filesUtil.makeDir(path.join(toModuleCtrlPath, '/..'), mname)
-        await filesUtil.makeDir(path.join(toModuleFormPath, name + '.sm'))
+        await filesUtil.makeDir(toModuleFormPath, name + '.sm')
       }
       // move old json files
       await filesUtil.moveFiles(oldFormPath, toModuleFormPath)
