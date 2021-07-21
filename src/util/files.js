@@ -72,8 +72,13 @@ class FilesUtil {
   }
 
   getJsonFromFile(filePath) {
-    let raw = fs.readFileSync(filePath)
-    return JSON.parse(raw)
+    try {
+      let raw = fs.readFileSync(filePath)
+      return JSON.parse(raw)
+    } catch (error) {
+      this.log(`hubo un error al leer el archivo ${filePath}`)
+      throw error
+    }
   }
 
   rewriteFile(filePath, newContent) {
