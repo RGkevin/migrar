@@ -53,7 +53,7 @@ class FormCommand extends Command {
 
     if (willReplaceForm) {
       // move old json files
-      await filesUtil.moveFiles(oldFormPath, toModuleFormPath, true)
+      await filesUtil.moveFiles(oldFormPath, toModuleFormPath)
       // move base controller files
       await filesUtil.moveFiles(fromCtrlPath, toModuleCtrlPath)
 
