@@ -1,7 +1,7 @@
 {
   "name": "migrar",
-  "description": "Migration tool for temenos visualizer projects",
-  "version": "3.7.3",
+  "description": "Migration tool for software projects",
+  "version": "3.7.4",
   "author": "Kevin Lopez @RGkevin",
   "bin": {
     "migrar": "./bin/run"
@@ -46,6 +46,8 @@
     "posttest": "eslint .",
     "prepack": "oclif-dev manifest && oclif-dev readme",
     "test": "echo NO TESTS",
-    "version": "oclif-dev readme && git add README.md"
+    "version": "oclif-dev readme && git add README.md",
+    "newcmd": "npx oclif command",
+    "release": "npm publish --access public"
   }
 }
