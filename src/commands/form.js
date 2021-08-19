@@ -88,7 +88,7 @@ class FormCommand extends Command {
   }
 
   getMConfigAsNewForm(moduleConfig) {
-    this.log('getMConfigAsNewForm:: ')
+    this.log(`getMConfigAsNewForm:: \n     ${JSON.stringify(moduleConfig)}`)
     const formKey = 'Forms'
     // const {
     // } = this.pathsUtil.paths
@@ -100,6 +100,16 @@ class FormCommand extends Command {
       },
       args: {name},
     } = this.parse(FormCommand)
+
+    // check if fromKey doesnt exists in moduleConfig object
+    if (!moduleConfig[formKey]) {
+      moduleConfig[formKey] = {}
+    }
+
+    // check if channel key doesnt exists in moduleConfig form object
+    if (!moduleConfig[formKey][channel]) {
+      moduleConfig[formKey][channel] = {}
+    }
 
     moduleConfig[formKey][channel][name] = {
       Controller: `${mname}/${name}${ctrl}`,
@@ -151,7 +161,7 @@ FormCommand.flags = {
   epath: flags.string({char: 'e', description: 'Controllers extension path', default: 'modules/require'}),
   opath: flags.string({char: 'o', description: 'Old project workspace path', default: '~/Visualizer/', required: true}),
   suffix: flags.string({char: 's', description: 'Project suffix identifier', default: 'BB'}),
-  xform: flags.boolean({char: 'x', description: 'Fix migrated form', default: false}),
+  xform: flags.boolean({char: 'x', description: 'Fix migrated form', default: true}),
 }
 
 FormCommand.args = [

@@ -5,7 +5,21 @@ const fs = require('fs')
 class ControllerCommand extends Command {
   async run() {
     this.filesUtil = new FilesUtil({log: this.log})
+    // fix strings
+    await this.fixStrings()
+    // fix structure
+    await this.fixStructure()
+  }
+
+  async fixStructure() {
     const {args: {to}} = this.parse(ControllerCommand)
+    this.log(`Will fix code Structure in controller: \n    ${to}`)
+    if (!fs.existsSync(to)) throw new Error(`File does not exists: \n    ${to}`)
+  }
+
+  async fixStrings() {
+    const {args: {to}} = this.parse(ControllerCommand)
+    this.log(`Will fix Strings in controller: \n   ${to}`)
     const fixStrings = [
       {
         oldString: 'applicationManager_Extn.',

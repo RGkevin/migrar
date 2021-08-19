@@ -9,7 +9,7 @@ class FilesUtil {
   }
 
   findAndReplace(filePath, oldString, newString) {
-    this.log(`    findAndReplace ${oldString} to ${newString} in:\n    ${filePath}`)
+    this.log(`    findAndReplace ${oldString} to ${newString} in:\n       ${filePath}`)
 
     return new Promise((resolve, reject) => {
       const backUpSuffix = '.backup'
