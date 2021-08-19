@@ -1,7 +1,7 @@
 {
   "name": "migrar",
   "description": "Migration tool for software projects",
-  "version": "3.7.5",
+  "version": "3.7.6",
   "author": "Kevin Lopez @RGkevin",
   "bin": {
     "migrar": "./bin/run"
@@ -10,7 +10,9 @@
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
-    "@oclif/plugin-help": "^3"
+    "@oclif/plugin-help": "^3",
+    "grasp": "^0.6.0",
+    "js-beautify": "^1.14.0"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",

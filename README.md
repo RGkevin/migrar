@@ -20,7 +20,7 @@ $ npm install -g migrar
 $ migrar COMMAND
 running command...
 $ migrar (-v|--version|version)
-migrar/3.7.5 darwin-x64 node-v15.4.0
+migrar/3.7.6 darwin-x64 node-v15.4.0
 $ migrar --help [COMMAND]
 USAGE
   $ migrar COMMAND
@@ -53,7 +53,7 @@ DESCRIPTION
   use the absolute path to the file
 ```
 
-_See code: [src/commands/controller.js](https://github.com/RGkevin/migrar/blob/v3.7.5/src/commands/controller.js)_
+_See code: [src/commands/controller.js](https://github.com/RGkevin/migrar/blob/v3.7.6/src/commands/controller.js)_
 
 ## `migrar extensions FROM TO`
 
@@ -71,7 +71,7 @@ OPTIONS
   -p, --epath=epath  [default: mvcextensions] MVC Extensions relative path
 ```
 
-_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v3.7.5/src/commands/extensions.js)_
+_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v3.7.6/src/commands/extensions.js)_
 
 ## `migrar fix TO NAME`
 
@@ -103,7 +103,7 @@ DESCRIPTION
   - controller
 ```
 
-_See code: [src/commands/fix.js](https://github.com/RGkevin/migrar/blob/v3.7.5/src/commands/fix.js)_
+_See code: [src/commands/fix.js](https://github.com/RGkevin/migrar/blob/v3.7.6/src/commands/fix.js)_
 
 ## `migrar form FROM TO NAME`
 
@@ -138,7 +138,7 @@ DESCRIPTION
   Please make sure the destination workspace is in a clean git state
 ```
 
-_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v3.7.5/src/commands/form.js)_
+_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v3.7.6/src/commands/form.js)_
 
 ## `migrar help [COMMAND]`
 
@@ -173,7 +173,7 @@ OPTIONS
   -p, --mpath=mpath  [default: modules] Modules relative path
 ```
 
-_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v3.7.5/src/commands/modules.js)_
+_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v3.7.6/src/commands/modules.js)_
 
 ## `migrar property FROM TO`
 
@@ -195,5 +195,5 @@ OPTIONS
   -r, --format=format      [default: .json] Files format suffix
 ```
 
-_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v3.7.5/src/commands/property.js)_
+_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v3.7.6/src/commands/property.js)_
 <!-- commandsstop -->

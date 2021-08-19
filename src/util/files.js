@@ -87,6 +87,11 @@ class FilesUtil {
     this.log('  file rewrite successfully')
   }
 
+  writeToFile(filePath, newContentString) {
+    fs.writeFileSync(filePath, newContentString)
+    this.log('   writ new content successfully')
+  }
+
   renameFile(filePath, oldName, newName) {
     this.log(`    renameFile ${oldName} to ${newName} in:\n    ${filePath}`)
     const _old = `${filePath}/${oldName}`
