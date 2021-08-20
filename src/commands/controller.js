@@ -6,7 +6,14 @@ const beautify = require('js-beautify').js
 
 class ControllerCommand extends Command {
   async run() {
+    const {args: {to}} = this.parse(ControllerCommand)
+    if (this.isStructureAlreadyFixed()) {
+      this.log(`   controller is already fixed for file: \n       ${to}`)
+      return
+    }
+
     this.filesUtil = new FilesUtil({log: this.log})
+
     // fix strings
     await this.fixStrings()
     // fix structure
@@ -35,6 +42,14 @@ class ControllerCommand extends Command {
       'define(function() {\nvar PresentationUtility = applicationManager.getPresentationUtility();\nvar MenuHandler = applicationManager.getMenuHandler();\n\nreturn {{a}};\n})',
       codeToProcess)
     this.filesUtil.writeToFile(to, processedCode)
+  }
+
+  isStructureAlreadyFixed() {
+    const {args: {to}} = this.parse(ControllerCommand)
+    const textToFind = 'var PresentationUtility'
+    const fileText = fs.readFileSync(to, 'utf8')
+
+    return fileText.indexOf(textToFind) !== -1
   }
 
   async fixStrings() {
