@@ -6,12 +6,6 @@ const beautify = require('js-beautify').js
 
 class ControllerCommand extends Command {
   async run() {
-    const {args: {to}} = this.parse(ControllerCommand)
-    if (this.isStructureAlreadyFixed()) {
-      this.log(`   controller is already fixed for file: \n       ${to}`)
-      return
-    }
-
     this.filesUtil = new FilesUtil({log: this.log})
 
     // fix strings
@@ -36,6 +30,10 @@ class ControllerCommand extends Command {
     const {args: {to}} = this.parse(ControllerCommand)
     this.log(`Will fix code Structure in controller: \n    ${to}`)
     if (!fs.existsSync(to)) throw new Error(`File does not exists: \n    ${to}`)
+    if (this.isStructureAlreadyFixed()) {
+      this.log(`   controller structure is already fixed for file: \n       ${to}`)
+      return
+    }
     const codeToProcess = fs.readFileSync(to, 'utf-8')
     const processedCode = replace('equery',
       'define($a)',
