@@ -17,11 +17,13 @@ class FormCommand extends Command {
     const {
       fromFormPath,
       fromCtrlPath,
+      toCtrlPath,
       toMConfigPath,
       toModuleFormPath,
       toModuleCtrlPath,
       toExtensionCtrlPath,
       oldFormPath,
+      toFormPath,
       oldCtrlPath,
       oldCtrlFilePath,
       toExtCtrlFilePath,
@@ -53,9 +55,9 @@ class FormCommand extends Command {
 
     if (willReplaceForm) {
       // move old json files
-      await filesUtil.moveFiles(oldFormPath, toModuleFormPath)
+      await filesUtil.moveFilesTo(oldFormPath, toFormPath)
       // move base controller files
-      await filesUtil.moveFiles(fromCtrlPath, toModuleCtrlPath)
+      await filesUtil.moveFiles(fromCtrlPath, toCtrlPath)
 
       // move old controller to extension path
       await filesUtil.moveFiles(oldCtrlFilePath, toExtCtrlFilePath)
@@ -67,8 +69,8 @@ class FormCommand extends Command {
       // only move old form as brand new form
       // copy and replace .json files
       this.log(`- Will move OLD files as BRAND NEW \n  from: ${oldFormPath} \n     and: ${oldCtrlPath} \n to: ${toExtensionCtrlPath}`)
-      await filesUtil.moveFiles(oldFormPath, toModuleFormPath)
-      await filesUtil.moveFiles(oldCtrlPath, toModuleCtrlPath)
+      await filesUtil.moveFiles(oldFormPath, toFormPath)
+      await filesUtil.moveFiles(oldCtrlPath, toCtrlPath)
 
       // rewrite module config
       moduleConfig = this.getMConfigAsNewForm(moduleConfig)
@@ -137,7 +139,12 @@ class FormCommand extends Command {
 
     let baseConfig = moduleConfig[formKey][channel][name]
 
-    baseConfig[extKey].push(`${name}${suffix}${ctrl}`)
+    const extCtrlName = `${name}${suffix}${ctrl}`
+    if (baseConfig[extKey] && baseConfig[extKey].indexOf(extCtrlName) === -1) {
+      baseConfig[extKey].push(extCtrlName)
+    } else {
+      this.log('    Warning: won\'t add new controller ext since it already exists in module config')
+    }
 
     return moduleConfig
   }

@@ -10,16 +10,27 @@ class FilesUtil {
 
   async findAndReplace(filePath, oldString, newString) {
     this.log(`    findAndReplace ${oldString} to ${newString} in:\n       ${filePath}`)
-    let raw = fs.readFileSync(filePath, {encoding: 'utf8'})
+    let raw = fs.readFileSync(filePath, 'utf8')
     let result = raw.replace(oldString, newString)
-    this.rewriteFile(filePath, result)
+    this.writeToFile(filePath, result)
   }
 
   async moveFiles(from, to, replaceAll = false) {
     const toPath = replaceAll ? path.join(to, '../') : to
-    this.log(`  moveFiles::\n    from: ${from}\n    to: ${toPath}`)
+    this.log(`  moveFiles::\n    from: ${from}\n    to: ${toPath} :: replaceAll ${replaceAll}`)
     fsExtra.copySync(from, toPath)
     this.log('  files moved successfully.')
+  }
+
+  async moveFilesTo(from, to) {
+    // check if dir exists if not then create it
+    // const toPath = path.join(to, dir)
+    if (!fs.existsSync(to)) {
+      this.log(`    moveFileTo:: dir ${to} does not exist then create it`)
+      fs.mkdirSync(to)
+    }
+    // then move the files to that specific folder
+    return this.moveFiles(from, to)
   }
 
   async makeDir(filePath, folderName) {
