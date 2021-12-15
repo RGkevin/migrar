@@ -11,7 +11,7 @@ class FilesUtil {
   async findAndReplace(filePath, oldString, newString) {
     this.log(`    findAndReplace ${oldString} to ${newString} in:\n       ${filePath}`)
     let raw = fs.readFileSync(filePath, 'utf8')
-    let result = raw.replace(oldString, newString)
+    let result = raw.replaceAll(oldString, newString)
     this.writeToFile(filePath, result)
   }
 
