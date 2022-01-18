@@ -11,7 +11,10 @@ class FixCommand extends Command {
 
     if (type === 'action') {
       const fileToFixPath = path.join(to, apath, channel, name + this.getFormatFromType())
-      this.fixAction(fileToFixPath, name)
+      this.fixAction(fileToFixPath, {
+        where: fileToFixPath,
+        value: name,
+      })
     } else if (type === 'form') {
       this.fixForm()
       await this.fixController()
@@ -113,18 +116,24 @@ class FixCommand extends Command {
   }
 
   changeInvokeToSnippet(action) {
-    const {id, display} = action
+    const {id, display, inputparams} = action
+    let iParams = []
+    if (Array.isArray(inputparams) && inputparams.length > 0) {
+      inputparams.forEach(p => iParams.push(p.value))
+    }
+
+    this.log(`changeInvokeToSnippet:: inputParams:: ${iParams.join(',')}`)
     return {
       id,
       type: 'ADD_SNIPPET',
-      codeSnippet: `this.${display}();`,
+      codeSnippet: `this.${display}(${iParams.join(',')});`,
       parentId: null,
       callbackType: null,
     }
   }
 
   canChangeInvokeToSnippet(action) {
-    return action.type && action.inputparams && action.type === 'INVOKE_FUNCTION' && action.inputparams.length === 0
+    return action.type && action.inputparams && action.type === 'INVOKE_FUNCTION'
   }
 }
 

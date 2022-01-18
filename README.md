@@ -20,7 +20,7 @@ $ npm install -g migrar
 $ migrar COMMAND
 running command...
 $ migrar (-v|--version|version)
-migrar/3.8.6 darwin-x64 node-v16.13.1
+migrar/3.8.8 darwin-x64 node-v16.13.1
 $ migrar --help [COMMAND]
 USAGE
   $ migrar COMMAND
@@ -35,6 +35,7 @@ USAGE
 * [`migrar fix TO NAME`](#migrar-fix-to-name)
 * [`migrar form FROM TO NAME`](#migrar-form-from-to-name)
 * [`migrar help [COMMAND]`](#migrar-help-command)
+* [`migrar many FROM TO FORMS`](#migrar-many-from-to-forms)
 * [`migrar modules FROM TO`](#migrar-modules-from-to)
 * [`migrar property FROM TO`](#migrar-property-from-to)
 
@@ -53,7 +54,7 @@ DESCRIPTION
   use the absolute path to the file
 ```
 
-_See code: [src/commands/controller.js](https://github.com/RGkevin/migrar/blob/v3.8.6/src/commands/controller.js)_
+_See code: [src/commands/controller.js](https://github.com/RGkevin/migrar/blob/v3.8.8/src/commands/controller.js)_
 
 ## `migrar extensions FROM TO`
 
@@ -71,7 +72,7 @@ OPTIONS
   -p, --epath=epath  [default: mvcextensions] MVC Extensions relative path
 ```
 
-_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v3.8.6/src/commands/extensions.js)_
+_See code: [src/commands/extensions.js](https://github.com/RGkevin/migrar/blob/v3.8.8/src/commands/extensions.js)_
 
 ## `migrar fix TO NAME`
 
@@ -103,7 +104,7 @@ DESCRIPTION
   - controller
 ```
 
-_See code: [src/commands/fix.js](https://github.com/RGkevin/migrar/blob/v3.8.6/src/commands/fix.js)_
+_See code: [src/commands/fix.js](https://github.com/RGkevin/migrar/blob/v3.8.8/src/commands/fix.js)_
 
 ## `migrar form FROM TO NAME`
 
@@ -138,7 +139,7 @@ DESCRIPTION
   Please make sure the destination workspace is in a clean git state
 ```
 
-_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v3.8.6/src/commands/form.js)_
+_See code: [src/commands/form.js](https://github.com/RGkevin/migrar/blob/v3.8.8/src/commands/form.js)_
 
 ## `migrar help [COMMAND]`
 
@@ -157,6 +158,29 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
 
+## `migrar many FROM TO FORMS`
+
+Describe the command here
+
+```
+USAGE
+  $ migrar many FROM TO FORMS
+
+ARGUMENTS
+  FROM   Base project workspace path
+  TO     Destination project workspace path
+  FORMS  file with forms data [{"name": "formName", "module": "ModuleName"}, ...]
+
+OPTIONS
+  -o, --opath=opath  (required) Old project workspace path
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/many.js](https://github.com/RGkevin/migrar/blob/v3.8.8/src/commands/many.js)_
+
 ## `migrar modules FROM TO`
 
 Move whole modules folder from one project to another
@@ -173,7 +197,7 @@ OPTIONS
   -p, --mpath=mpath  [default: modules] Modules relative path
 ```
 
-_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v3.8.6/src/commands/modules.js)_
+_See code: [src/commands/modules.js](https://github.com/RGkevin/migrar/blob/v3.8.8/src/commands/modules.js)_
 
 ## `migrar property FROM TO`
 
@@ -195,5 +219,5 @@ OPTIONS
   -r, --format=format      [default: .json] Files format suffix
 ```
 
-_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v3.8.6/src/commands/property.js)_
+_See code: [src/commands/property.js](https://github.com/RGkevin/migrar/blob/v3.8.8/src/commands/property.js)_
 <!-- commandsstop -->
